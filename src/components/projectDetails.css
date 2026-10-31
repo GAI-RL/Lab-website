@@ -1,0 +1,344 @@
+/* ═══════════════════════════════════════════════════════════════
+   PROJECT DETAIL PAGE (Full Width Hero Layout)
+   ═══════════════════════════════════════════════════════════════ */
+
+.pj-page {
+  min-height: 100vh;
+  padding: 90px 50px 60px; /* Space for the floating navbar */
+  background: var(--bg);
+  position: relative;
+}
+
+.pj-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Back Button ── */
+.pj-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.2s ease;
+}
+.pj-back:hover {
+  color: var(--c-brand);
+}
+
+/* ── 1. TEXT SECTION (Full Width) ── */
+.pj-header-full {
+  max-width: 900px;
+  margin-bottom: 48px;
+}
+
+.pj-tags {
+  margin-bottom: 20px;
+}
+
+.pj-chip {
+  display: inline-block;
+  background: rgba(245, 198, 208, 0.4);
+  color: #a04a68;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pj-title {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--c-ink);
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.pj-summary {
+  font-size: 1.05rem;
+  color: var(--c-ink);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.pj-tech-stack-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pj-tech-stack-top span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+/* ── 2. VIDEO SECTION (Full Width) ── */
+.pj-video-hero {
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.pj-gif-frame {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(42, 5, 25, 0.15);
+  background: #000;
+}
+
+.pj-gif-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.pj-gif-wrap img,
+.pj-gif-wrap video,
+.project-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ✅ Fits the whole video inside */
+  display: block;
+}
+
+/* ── 3. CONTENT SECTION (Below Video) ── */
+.pj-content-full {
+  max-width: 100%;
+  margin-bottom: 80px;
+}
+
+/* Keeps text readable, but lines up perfectly with the left edge */
+.pj-content-full > h2,
+.pj-content-full > p {
+  max-width: 900px;
+}
+
+/* Spacing for the "Key Features" heading */
+.pj-content-full h2.pj-mt {
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
+/* ── Key Features Grid (4 columns) ── */
+.pj-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* The Card Base */
+.pj-feature {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 24px 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* The Top Accent Line (Hidden by default) */
+.pj-feature::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover State */
+.pj-feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.pj-feature:hover::before {
+  opacity: 1;
+}
+
+/* The Icons (Base setup) */
+.pj-feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.pj-feature:hover .pj-feature-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Typography */
+.pj-feature h3 {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a0a14;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+.pj-feature p {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: #4a2a3d;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COLORFUL THEMES (Matching your homepage)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Card 1: Pink */
+.pj-feature:nth-child(1)::before {
+  background: #f5c6d0;
+}
+.pj-feature:nth-child(1) .pj-feature-icon {
+  background: #f5c6d0;
+  color: #a04a68;
+}
+.pj-feature:nth-child(1):hover {
+  border-color: rgba(160, 74, 104, 0.3);
+}
+
+/* Card 2: Purple */
+.pj-feature:nth-child(2)::before {
+  background: #d4b8d9;
+}
+.pj-feature:nth-child(2) .pj-feature-icon {
+  background: #d4b8d9;
+  color: #7d5a85;
+}
+.pj-feature:nth-child(2):hover {
+  border-color: rgba(125, 90, 133, 0.3);
+}
+
+/* Card 3: Blue */
+.pj-feature:nth-child(3)::before {
+  background: #b8d4e8;
+}
+.pj-feature:nth-child(3) .pj-feature-icon {
+  background: #b8d4e8;
+  color: #4a7ba0;
+}
+.pj-feature:nth-child(3):hover {
+  border-color: rgba(74, 123, 160, 0.3);
+}
+
+/* Card 4: Yellow */
+.pj-feature:nth-child(4)::before {
+  background: #f0dfa8;
+}
+.pj-feature:nth-child(4) .pj-feature-icon {
+  background: #f0dfa8;
+  color: #a88838;
+}
+.pj-feature:nth-child(4):hover {
+  border-color: rgba(168, 136, 56, 0.3);
+}
+
+/* Card 5: Pink */
+.pj-feature:nth-child(5)::before {
+  background: #f5c6d0;
+}
+.pj-feature:nth-child(5) .pj-feature-icon {
+  background: #f5c6d0;
+  color: #a04a68;
+}
+.pj-feature:nth-child(5):hover {
+  border-color: rgba(160, 74, 104, 0.3);
+}
+
+/* Card 6: Purple */
+.pj-feature:nth-child(6)::before {
+  background: #d4b8d9;
+}
+.pj-feature:nth-child(6) .pj-feature-icon {
+  background: #d4b8d9;
+  color: #7d5a85;
+}
+.pj-feature:nth-child(6):hover {
+  border-color: rgba(125, 90, 133, 0.3);
+}
+
+/* Card 7: Blue */
+.pj-feature:nth-child(7)::before {
+  background: #b8d4e8;
+}
+.pj-feature:nth-child(7) .pj-feature-icon {
+  background: #b8d4e8;
+  color: #4a7ba0;
+}
+.pj-feature:nth-child(7):hover {
+  border-color: rgba(74, 123, 160, 0.3);
+}
+
+/* Card 8: Yellow */
+.pj-feature:nth-child(8)::before {
+  background: #f0dfa8;
+}
+.pj-feature:nth-child(8) .pj-feature-icon {
+  background: #f0dfa8;
+  color: #a88838;
+}
+.pj-feature:nth-child(8):hover {
+  border-color: rgba(168, 136, 56, 0.3);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .pj-page {
+    padding: 100px 24px 80px;
+  }
+  .pj-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pj-video-hero {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pj-page {
+    padding: 90px 20px 60px;
+  }
+  .pj-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .pj-title {
+    font-size: 2.2rem;
+  }
+  .pj-gif-wrap {
+    aspect-ratio: 1 / 1; /* ✅ Perfect for mobile videos */
+  }
+}
