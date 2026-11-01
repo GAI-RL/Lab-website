@@ -1,5 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    JOIN US PAGE
+
+   Uses the typography tokens from index.css (:root):
+   --font-sans, --font-serif, --fs-xs/sm/base/md/lg, --fs-body, --fs-body-sm
    ═══════════════════════════════════════════════════════════════ */
 
 .join-page {
@@ -47,12 +50,13 @@
   background: #ff5588;
 }
 
+/* Serif display font only ships in weight 400 — never fake-bold it */
 .join-hero h1 {
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(2.4rem, 4.5vw, 4rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
   color: var(--white);
   max-width: 22ch;
   margin: 0 0 20px;
@@ -66,9 +70,9 @@
 }
 
 .join-hero p {
-  font-size: 1.05rem;
+  font-size: var(--fs-body);
   line-height: 1.7;
-  color: rgba(247, 242, 238, 0.75);
+  color: rgba(247, 242, 238, 0.82);
   max-width: 52ch;
 }
 
@@ -89,16 +93,17 @@
 
 /* ── Left: text side ── */
 .join-text h2 {
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.6rem, 2.2vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
   color: var(--slate);
   margin-bottom: 14px;
 }
 
 .join-text > p {
-  font-size: 0.94rem;
+  font-size: var(--fs-body);
   line-height: 1.75;
   color: var(--body);
   margin-bottom: 28px;
@@ -118,7 +123,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 0.9rem;
+  font-size: var(--fs-base);
   color: var(--body);
 }
 
@@ -143,14 +148,15 @@
 }
 
 .join-contact h3 {
-  font-size: 0.92rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
   font-weight: 700;
   color: var(--slate);
   margin-bottom: 6px;
 }
 
 .join-contact p {
-  font-size: 0.85rem;
+  font-size: var(--fs-body-sm);
   color: var(--body);
   margin: 0;
 }
@@ -175,11 +181,12 @@
 }
 
 .join-form-title {
-  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
   font-weight: 700;
   color: var(--slate);
   margin-bottom: 22px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .form-row {
@@ -193,16 +200,17 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 0.78rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--slate);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .join-form label.full {
   margin-bottom: 14px;
 }
 
+/* 1rem inputs also stop iOS Safari from zooming in on focus */
 .join-form input,
 .join-form select,
 .join-form textarea {
@@ -212,9 +220,9 @@
   border: 1px solid var(--border);
   border-radius: 9px;
   color: var(--slate);
-  font-family: "Inter", sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: -0.01em;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  letter-spacing: 0;
   outline: none;
   transition:
     border-color 0.25s ease,
@@ -261,7 +269,7 @@
 }
 
 .file-upload .file-name {
-  font-size: 0.83rem;
+  font-size: var(--fs-sm);
   color: var(--body);
   font-weight: 500;
   overflow: hidden;
@@ -283,7 +291,7 @@
   width: 100%;
   margin-top: 8px;
   padding: 13px 22px;
-  font-size: 0.9rem;
+  font-size: var(--fs-base);
   font-weight: 600;
   border-radius: 10px;
 }
@@ -291,13 +299,13 @@
 .join-form .btn-solid i {
   display: inline;
   opacity: 0.8;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
 }
 
 /* ── Status messages ── */
 .form-status {
   margin-top: 14px;
-  font-size: 0.83rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   padding: 10px 14px;
   border-radius: 8px;
@@ -350,6 +358,7 @@
     padding: 26px 20px;
   }
 }
+
 /* ── Custom dropdown ── */
 .custom-dropdown {
   position: relative;
@@ -363,10 +372,10 @@
   border: 1px solid var(--border, #e5e5e5);
   border-radius: 9px;
   color: var(--slate, #2a0a1d);
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-align: left;
   cursor: pointer;
   display: flex;
@@ -392,7 +401,7 @@
 
 .custom-dropdown-arrow {
   color: #7a0a4f;
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   transition: transform 0.25s ease;
 }
 
@@ -437,8 +446,8 @@
   gap: 10px;
   padding: 10px 12px;
   border-radius: 7px;
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 0.86rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
   font-weight: 500;
   color: var(--slate, #2a0a1d);
   cursor: pointer;
@@ -459,10 +468,10 @@
 
 .custom-dropdown-item.is-selected i {
   color: #ffffff;
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
 }
 
 .custom-dropdown-item i {
   color: #7a0a4f;
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
 }

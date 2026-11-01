@@ -1,5 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    PROJECT DETAIL PAGE (Full Width Hero Layout)
+
+   
    ═══════════════════════════════════════════════════════════════ */
 
 .pj-page {
@@ -19,8 +21,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Inter", sans-serif;
-  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--muted);
   text-decoration: none;
@@ -44,28 +46,29 @@
 .pj-chip {
   display: inline-block;
   background: rgba(245, 198, 208, 0.4);
-  color: #a04a68;
+  color: var(--chip-pink-fg, #7a2a47);
   padding: 6px 14px;
   border-radius: 100px;
-  font-family: "Inter", sans-serif;
-  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
+/* Bold headings use DM Sans (real 700/800 weights); the serif is never bolded */
 .pj-title {
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: var(--font-sans);
   font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.1;
   color: var(--c-ink);
   margin-bottom: 20px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
 }
 
 .pj-summary {
-  font-size: 1.05rem;
+  font-size: var(--fs-body);
   color: var(--c-ink);
   line-height: 1.7;
   margin-bottom: 30px;
@@ -78,8 +81,8 @@
 }
 
 .pj-tech-stack-top span {
-  font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--muted);
   background: #ffffff;
@@ -112,7 +115,7 @@
 .project-media {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* ✅ Fits the whole video inside */
+  object-fit: contain; /* Fits the whole video inside */
   display: block;
 }
 
@@ -120,6 +123,23 @@
 .pj-content-full {
   max-width: 100%;
   margin-bottom: 80px;
+}
+
+/* Section headings (e.g. "Overview", "Key Features") */
+.pj-content-full > h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--c-ink);
+  margin-bottom: 14px;
+}
+
+.pj-content-full > p {
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  color: var(--c-ink);
 }
 
 /* Keeps text readable, but lines up perfectly with the left edge */
@@ -198,17 +218,18 @@
 
 /* Typography */
 .pj-feature h3 {
-  font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
   font-weight: 700;
+  letter-spacing: -0.015em;
   color: #1a0a14;
   margin: 0 0 10px 0;
   line-height: 1.3;
 }
 
 .pj-feature p {
-  font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-sm);
   color: #4a2a3d;
   line-height: 1.6;
   margin: 0;
@@ -339,6 +360,6 @@
     font-size: 2.2rem;
   }
   .pj-gif-wrap {
-    aspect-ratio: 1 / 1; /* ✅ Perfect for mobile videos */
+    aspect-ratio: 1 / 1; /* Perfect for mobile videos */
   }
 }

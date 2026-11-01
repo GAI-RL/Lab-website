@@ -472,12 +472,13 @@ export const projects = [
     id: "naqshai",
     tag: "Vision",
     title: "NaqshAI",
-    text: "Optical Character Recognition (OCR) tailored specifically for complex Urdu script.",
+    text: "A semantic Urdu AI suite and intelligent tutoring assistant for Urdu literature, summaries, verse explanations, and automated exam preparation.",
     img: naqshAi,
 
     overview: [
-      "Urdu script presents unique challenges for standard OCR systems due to its cursive nature and contextual letterforms.",
-      "NaqshAI is a specialized model trained on thousands of Urdu documents to accurately extract and digitize text.",
+      "NaqshAI is a specialized Urdu AI suite built on Retrieval-Augmented Generation (RAG) to provide accurate, context-aware academic and literary assistance in both Urdu script and Roman Urdu.",
+      "Designed with dedicated Tutor and Paper modes, the platform helps students and educators generate lesson summaries (خلاصہ), central ideas (مرکزی خیال), poetry and verse explanations (تشریح), formal letters, stories, and practice MCQs.",
+      "By combining semantic search with bilingual Urdu understanding, RAGix bridges the gap between modern generative AI and regional-language education.",
     ],
     features: [
       {

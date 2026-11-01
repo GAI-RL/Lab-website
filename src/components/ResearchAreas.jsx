@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Img from "./Img";
 import { services, servicesImage } from "../data/content";
-
 // "Research Areas" section (id="services" - the nav's "Research" link).
 export default function ResearchAreas() {
   return (
