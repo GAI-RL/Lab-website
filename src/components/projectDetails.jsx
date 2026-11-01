@@ -82,10 +82,9 @@ export default function ProjectDetail() {
               <div className="pj-gif-wrap">
                 {isVideo ? (
                   <video
-                    src={project.img}
+                    src={project.detailVideo || project.img}
                     autoPlay
                     loop
-                    muted
                     playsInline
                     className="project-media"
                   />

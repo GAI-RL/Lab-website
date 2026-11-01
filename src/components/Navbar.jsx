@@ -66,6 +66,19 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [open]);
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setOpen(false);
+
+    if (href?.startsWith("#")) {
+      const targetId = href.replace("#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const classes = [scrolled && "scrolled", open && "nav-open"]
     .filter(Boolean)
     .join(" ");
@@ -103,7 +116,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={active === link.href ? "active" : ""}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>
@@ -115,7 +128,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className="btn-nav side-panel-btn"
-            onClick={() => setOpen(false)}
+            onClick={(e) => handleNavClick(e, "#contact")}
           >
             <span>Contact Us</span>
           </a>
@@ -124,7 +137,12 @@ export default function Navbar() {
 
       {/* Main Navbar */}
       <nav id="nav" className={classes} aria-label="Primary">
-        <a href="#home" className="nav-logo" aria-label="GARIL Home">
+        <a
+          href="#home"
+          className="nav-logo"
+          aria-label="GARIL Home"
+          onClick={(e) => handleNavClick(e, "#home")}
+        >
           <img src={logo} alt="GARIL" className="nav-logo-img" />
         </a>
 
@@ -135,7 +153,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={active === link.href ? "active" : ""}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>
@@ -144,7 +162,11 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-right">
-          <a href="#contact" className="btn-nav desktop-cta">
+          <a
+            href="#contact"
+            className="btn-nav desktop-cta"
+            onClick={(e) => handleNavClick(e, "#contact")}
+          >
             <span>Contact Us</span>
           </a>
 

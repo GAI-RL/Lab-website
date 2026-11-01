@@ -35,6 +35,7 @@ import agri from "../assets/projects/agri.mp4";
 import deepfakeguard from "../assets/projects/deepfake.mp4";
 import kisaan from "../assets/projects/kisaangpt.mp4";
 import steamx from "../assets/projects/steamx.mp4";
+import steamx2 from "../assets/projects/steamx2.mp4";
 import researchgpt from "../assets/projects/researchgpt.mp4";
 import mediassist from "../assets/projects/MediAssist.mp4";
 import meetmind from "../assets/projects/meetmind.mp4";
@@ -295,7 +296,7 @@ export const projects = [
     title: "STEAMX",
     text: "An AI-powered educational platform empowering students in grades 9–12 with intelligent tutoring, personalized academic assistance, and interactive learning experiences.",
     img: steamx,
-
+    detailVideo: steamx2,
     overview: [
       "STEAMX is an AI-powered educational platform designed to enhance the learning experience for students in grades 9 through 12.",
       "The platform features an intelligent AI assistant that helps students understand complex academic concepts, explore subject-related topics, and receive instant answers to educational questions.",
