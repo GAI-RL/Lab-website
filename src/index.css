@@ -9,9 +9,7 @@
      5. Responsive
      6. Tailwind utilities
 
-   Google Fonts link needed in index.html (only these two families):
-   https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap
-   ═══════════════════════════════════════════════════════════════ */
+     ═══════════════════════════════════════════════════════════════ */
 
 @tailwind base;
 
@@ -737,12 +735,13 @@ nav > *,
 .btn-solid {
   display: inline-flex;
   align-items: center;
+  border-radius: 10px;
   justify-content: center;
   gap: 8px;
   background: #b0568a;
   color: #ffffff;
   padding: 14px 28px;
-  border-radius: 4px;
+
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: var(--fs-base);
@@ -764,10 +763,11 @@ nav > *,
   align-items: center;
   justify-content: center;
   gap: 8px;
+  border-radius: 10px;
   background: transparent;
   color: #7a0a4f;
   padding: 14px 28px;
-  border-radius: 4px;
+
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: var(--fs-base);
@@ -2050,7 +2050,8 @@ nav > *,
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-
+  cursor: default;
+  user-select: none;
   /* CHANGE: Remove the fixed height and let it stretch */
   height: 100%;
   min-height: 420px; /* Keeps a nice minimum height just in case */
@@ -2141,6 +2142,8 @@ nav > *,
   flex: 1;
   text-decoration: none;
   transition: all 0.3s ease;
+  cursor: default;
+  user-select: none;
 }
 
 .ev-sm-card:hover {

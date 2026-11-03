@@ -57,7 +57,7 @@ export default function Events() {
               const [typeName, date] = (event.type || "").split(" · ");
 
               return (
-                <a href="#" className="ev-sm-card" key={index}>
+                <div className="ev-sm-card" key={index}>
                   <div className="ev-sm-img">
                     <img src={event.img} alt={event.alt || "Event"} />
                   </div>
@@ -70,7 +70,7 @@ export default function Events() {
                     <h3>{event.title}</h3>
                     <p>{event.text}</p>
                   </div>
-                </a>
+                </div>
               );
             })}
           </div>

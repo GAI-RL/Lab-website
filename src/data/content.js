@@ -379,7 +379,7 @@ export const projects = [
     title: "ResearchGPT",
     text: "An AI-powered research assistant that enables users to upload research papers, extract information through natural language queries, compare multiple studies, and identify research gaps.",
     img: researchgpt,
-    stack: ["Python", "LLMs", "RAG", "NLP", "LangChain", "FastAPI", "React"],
+
     overview: [
       "ResearchGPT is an intelligent AI-powered research assistant designed to simplify academic research, literature analysis, and scientific document understanding.",
       "The platform allows researchers to upload academic papers and interact with their content through natural language queries, enabling quick extraction of relevant information without manually reviewing entire documents.",
@@ -418,14 +418,6 @@ export const projects = [
       {
         title: "AI-Generated Research Summaries",
         desc: "Generate concise, structured summaries of lengthy documents to save reading time.",
-      },
-      {
-        title: "Literature Review Assistance",
-        desc: "Compile key insights across a collection of papers to streamline the literature review process.",
-      },
-      {
-        title: "Context-Aware Research Queries",
-        desc: "The AI understands the academic context of your questions to deliver more relevant answers.",
       },
     ],
   },
@@ -625,14 +617,6 @@ export const projects = [
         title: "Pediatric Health Information",
         desc: "Access tailored medical guidance and health information specifically for children and infants.",
       },
-      {
-        title: "Natural Language Medical Conversations",
-        desc: "Engage in fluid, context-aware dialogues that feel like a natural conversation with a healthcare professional.",
-      },
-      {
-        title: "Interactive Healthcare Interface",
-        desc: "A user-friendly, intuitive platform designed to make navigating medical information simple and stress-free.",
-      },
     ],
   },
   {
@@ -681,22 +665,6 @@ export const projects = [
       {
         title: "Semantic Search Across Meeting Transcripts",
         desc: "Find relevant information across all past meetings using natural language search.",
-      },
-      {
-        title: "Vector-Based Information Retrieval",
-        desc: "Uses advanced vector search to quickly locate specific moments and topics within transcripts.",
-      },
-      {
-        title: "Meeting Audio Upload and Processing",
-        desc: "Upload pre-recorded audio files for batch transcription and analysis.",
-      },
-      {
-        title: "Intelligent Meeting Insights",
-        desc: "Gain deeper insights into team dynamics, recurring topics, and meeting efficiency.",
-      },
-      {
-        title: "Enterprise-Focused Data Privacy",
-        desc: "Built with robust security and privacy measures to protect sensitive corporate data.",
       },
     ],
   },
