@@ -30,7 +30,7 @@ import sir from "../assets/images/events/u-1.jpg";
 
 import grammer from "../assets/projects/grammer.mp4";
 
-import naqshAi from "../assets/projects/NaqshAi.mp4";
+import naqshAi from "../assets/projects/naqshAi.mp4";
 import agri from "../assets/projects/agri.mp4";
 import deepfakeguard from "../assets/projects/deepfake.mp4";
 import kisaan from "../assets/projects/kisaangpt.mp4";
