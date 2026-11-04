@@ -17,6 +17,8 @@ import Team from "../components/Team";
 import Collaborators from "../components/Collaborators";
 import Footer from "../components/Footer";
 import ChatBot from "../components/ChatBot";
+import TechStack from "../components/TechStack";
+import Reveal from "../components/Reveal"; // <-- Import the Reveal component
 
 export default function Home() {
   const { hash } = useLocation();
@@ -44,19 +46,61 @@ export default function Home() {
       </a>
       <Navbar />
       <main id="main">
+        {/* Hero shows instantly on load, so we don't wrap it */}
         <Hero />
-        <Features />
-        <About />
-        <Partners />
-        <ResearchAreas />
-        <Contact />
-        <Process />
-        <Publications />
-        {/* <Solutions /> */}
-        <Projects />
-        <Events />
-        <Team />
-        <Collaborators />
+
+        {/* Wrap the rest in the Reveal component */}
+        <Reveal>
+          <Features />
+        </Reveal>
+
+        <Reveal>
+          <About />
+        </Reveal>
+
+        <Reveal>
+          <Partners />
+        </Reveal>
+
+        <Reveal>
+          <ResearchAreas />
+        </Reveal>
+
+        <Reveal>
+          <Contact />
+        </Reveal>
+
+        <Reveal>
+          <Process />
+        </Reveal>
+
+        <Reveal>
+          <Publications />
+        </Reveal>
+
+        {/* <Reveal>
+          <Solutions />
+        </Reveal> */}
+
+        <Reveal>
+          <Projects />
+        </Reveal>
+
+        <Reveal>
+          <Events />
+        </Reveal>
+
+        <Reveal>
+          <Team />
+        </Reveal>
+
+        <Reveal>
+          <Collaborators />
+        </Reveal>
+
+        <Reveal>
+          <TechStack />
+        </Reveal>
       </main>
       <Footer />
       <ChatBot />

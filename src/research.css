@@ -7,14 +7,15 @@
    ───────────────────────────────────────────── */
 
 .research-page {
-  --wine: #2a0519;
-  --plum: #1d0512;
-  --crim: #b3173f;
-  --rose: #e7a9a0;
+  /* Updated to match the new Purple/Blue theme */
+  --wine: var(--c-ink, #1e1b3a);
+  --plum: var(--c-deep, #4b2e9a);
+  --crim: var(--c-brand, #6d3be0);
+  --rose: #d2c3f7; /* Soft purple pastel */
   --ivory: #ffffff;
-  --ink: #1a0a14;
-  --muted: rgba(26, 10, 20, 0.6);
-  --hairline: rgba(26, 10, 20, 0.12);
+  --ink: var(--c-ink, #1e1b3a);
+  --muted: var(--c-text, #4b4570);
+  --hairline: rgba(109, 59, 224, 0.12);
 
   /* Local typography aliases (fall back if index.css tokens are missing) */
   --rp-sans: var(--font-sans, "DM Sans", system-ui, -apple-system, sans-serif);
@@ -39,8 +40,6 @@
 
 /* ─────────────────────────────────────────────
    HEADINGS
-   Bold headings use DM Sans (real 700/800 weights).
-   DM Serif Display only ships in 400, so it is never bolded.
    ───────────────────────────────────────────── */
 .research-page .ph {
   margin-bottom: 1.5rem;
@@ -105,7 +104,7 @@
   font-size: clamp(60px, 8vw, 120px);
   font-weight: 400;
   line-height: 1;
-  color: rgba(26, 10, 20, 0.04);
+  color: rgba(109, 59, 224, 0.04); /* Purple watermark */
   letter-spacing: -0.05em;
   pointer-events: none;
   user-select: none;
@@ -138,17 +137,16 @@
   gap: 3rem;
   align-items: center;
 
-  background: linear-gradient(135deg, #fdfbfb 0%, #f4e6eb 100%);
-  border: 1px solid rgba(122, 10, 79, 0.08);
+  background: linear-gradient(135deg, #faf8ff 0%, #f1ecff 100%);
+  border: 1px solid rgba(109, 59, 224, 0.08);
   color: var(--ink);
 
   padding: 3.5rem 3rem;
   border-radius: 16px;
   margin-bottom: 3rem;
 
-  box-shadow: 0 20px 60px rgba(122, 10, 79, 0.08);
+  box-shadow: 0 20px 60px rgba(109, 59, 224, 0.08);
 
-  /* overflow visible so the sticky sidebar works inside */
   overflow: visible;
   z-index: 1;
 }
@@ -216,16 +214,16 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    #ff4d79 0%,
-    #b3173f 40%,
-    rgba(179, 23, 63, 0) 75%
+    #8b5cf6 0%,
+    #6d3be0 40%,
+    rgba(109, 59, 224, 0) 75%
   );
   animation: corePulse 6s ease-in-out infinite;
   filter: blur(2px);
   z-index: 2;
   box-shadow:
-    0 0 40px rgba(255, 77, 121, 0.6),
-    0 0 80px rgba(179, 23, 63, 0.3);
+    0 0 40px rgba(139, 92, 246, 0.6),
+    0 0 80px rgba(109, 59, 224, 0.3);
 }
 
 .research-page .hero-core-inner {
@@ -234,9 +232,9 @@
   border-radius: 50%;
   background: #ffffff;
   box-shadow:
-    0 0 20px #ff2d6b,
-    0 0 40px rgba(179, 23, 63, 0.8),
-    0 0 60px rgba(179, 23, 63, 0.4);
+    0 0 20px #a78bfa,
+    0 0 40px rgba(109, 59, 224, 0.8),
+    0 0 60px rgba(109, 59, 224, 0.4);
   animation: coreInnerPulse 6s ease-in-out infinite;
 }
 
@@ -264,8 +262,8 @@
 .research-page .hero-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(122, 10, 79, 0.15);
-  box-shadow: 0 0 20px rgba(122, 10, 79, 0.05);
+  border: 1px solid rgba(109, 59, 224, 0.15);
+  box-shadow: 0 0 20px rgba(109, 59, 224, 0.05);
   will-change: transform;
 }
 .research-page .ring-a {
@@ -318,39 +316,27 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  box-shadow: 0 8px 20px rgba(42, 5, 25, 0.08);
+  box-shadow: 0 8px 20px rgba(30, 27, 75, 0.08);
 }
 
-/* Darker text on the pastel faces for readable contrast */
-.research-page .cube-1 .hero-cube-face {
-  background: #f5c6d0;
-  border: 1.5px solid #a04a68;
-  color: #7a2a47;
-}
-.research-page .cube-2 .hero-cube-face {
-  background: #d4b8d9;
-  border: 1.5px solid #7d5a85;
-  color: #5c3d66;
-}
-.research-page .cube-3 .hero-cube-face {
-  background: #b8d4e8;
-  border: 1.5px solid #4a7ba0;
-  color: #2f5a7d;
-}
+/* Updated Cube Faces to Purple/Blue */
+.research-page .cube-1 .hero-cube-face,
 .research-page .cube-4 .hero-cube-face {
-  background: #f5c6d0;
-  border: 1.5px solid #a04a68;
-  color: #7a2a47;
+  background: #e4daff;
+  border: 1.5px solid #6d3be0;
+  color: #4b2e9a;
 }
+.research-page .cube-2 .hero-cube-face,
 .research-page .cube-5 .hero-cube-face {
-  background: #d4b8d9;
-  border: 1.5px solid #7d5a85;
-  color: #5c3d66;
+  background: #d2c3f7;
+  border: 1.5px solid #4b2e9a;
+  color: #4b2e9a;
 }
+.research-page .cube-3 .hero-cube-face,
 .research-page .cube-6 .hero-cube-face {
-  background: #b8d4e8;
-  border: 1.5px solid #4a7ba0;
-  color: #2f5a7d;
+  background: #bcd8fb;
+  border: 1.5px solid #2676e8;
+  color: #1d5bb8;
 }
 
 .front {
@@ -422,7 +408,7 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 2.5rem;
-  align-items: start; /* required so sticky works in CSS Grid */
+  align-items: start;
   margin-top: 1rem;
 }
 
@@ -439,22 +425,16 @@
 .sidebar-title {
   display: inline-flex;
   align-items: center;
-  font-family: var(
-    --font-sans,
-    "DM Sans",
-    system-ui,
-    -apple-system,
-    sans-serif
-  );
-  font-size: var(--fs-xs, 0.8rem);
+  font-family: var(--rp-sans);
+  font-size: var(--rp-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: #f5c6d0;
-  color: #7a0a4f;
+  background: #f3e8ff; /* Soft purple */
+  color: var(--c-brand); /* Vibrant purple */
   padding: 8px 16px;
   border-radius: 100px;
-  border: 1px solid rgba(122, 10, 79, 0.1);
+  border: 1px solid rgba(109, 59, 224, 0.1);
   margin-bottom: 0.5rem;
   width: fit-content;
 }
@@ -466,7 +446,7 @@
 }
 
 .sidebar-card {
-  background: #faf7f3;
+  background: #faf8ff; /* Soft icy bg */
   border: 1px solid var(--hairline);
   border-radius: 12px;
   padding: 1.25rem;
@@ -474,16 +454,9 @@
   overflow: hidden;
 }
 
-/* Small card title: sans (serif is too heavy/thin-stroked at this size) */
 .sidebar-card h3 {
-  font-family: var(
-    --font-sans,
-    "DM Sans",
-    system-ui,
-    -apple-system,
-    sans-serif
-  );
-  font-size: var(--fs-md, 1.15rem);
+  font-family: var(--rp-sans);
+  font-size: var(--rp-body-sm);
   font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--ink);
@@ -492,7 +465,7 @@
 }
 
 .sidebar-card p {
-  font-size: var(--fs-body-sm, 1.05rem);
+  font-size: var(--rp-body-sm);
   color: var(--ink);
   line-height: 1.6;
   max-width: 85%;
@@ -515,22 +488,22 @@
 }
 
 .editorial-main .feat-canvas-wrap {
-  background: #faf7f3;
+  background: #faf8ff; /* Soft icy bg */
   border: 1px solid var(--hairline);
-  border-top: 3px solid #b0568a;
+  border-top: 3px solid #6d3be0; /* Brand Purple */
   border-radius: 16px;
   padding: 1rem;
   height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(42, 5, 25, 0.03);
+  box-shadow: 0 4px 20px rgba(109, 59, 224, 0.03);
   transition: all 0.3s ease;
 }
 
 .editorial-main .feat-canvas-wrap:hover {
   background: #ffffff;
-  box-shadow: 0 12px 30px rgba(42, 5, 25, 0.08);
+  box-shadow: 0 12px 30px rgba(109, 59, 224, 0.08);
 }
 
 .editorial-main .research-canvas {
@@ -541,13 +514,7 @@
 
 /* Text Block Underneath */
 .editorial-text h3 {
-  font-family: var(
-    --font-sans,
-    "DM Sans",
-    system-ui,
-    -apple-system,
-    sans-serif
-  );
+  font-family: var(--rp-sans);
   font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -557,7 +524,7 @@
 }
 
 .editorial-text p {
-  font-size: var(--fs-body, 1.1rem);
+  font-size: var(--rp-body);
   line-height: 1.75;
   color: var(--ink);
   max-width: 65ch;
@@ -567,7 +534,7 @@
 .editorial-text .tags {
   display: flex;
   gap: 20px;
-  font-size: var(--fs-xs, 0.8rem);
+  font-size: var(--rp-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--crim);
@@ -603,7 +570,7 @@
     gap: 2rem;
   }
   .editorial-sidebar {
-    position: relative; /* turns off sticky on tablet/mobile */
+    position: relative;
     top: 0;
     margin-bottom: 2rem;
   }

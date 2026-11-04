@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import "../index.css";
 
 // ═══════════════════════════════════════════════════════════════
-// 🎨 THEME COLORS
+// 🎨 THEME COLORS  (blue / violet / magenta glossy palette)
 // ═══════════════════════════════════════════════════════════════
 const THEME = {
   active: "multi-color",
@@ -10,41 +10,58 @@ const THEME = {
 
 const COLORS = {
   "multi-color": {
-    orbit: "rgba(176, 86, 138, 0.12)",
-    link: "rgba(122, 10, 79, 0.25)",
-    pulse: "rgba(245, 198, 208, 0.9)",
-    hubFill: "#b0568a",
-    hubStroke: "#f5c6d0",
-    hubRing: "rgba(176, 86, 138, 0.3)",
-    hubGlow: "rgba(176, 86, 138, 0.2)",
-    nodeFill: "#7a0a4f",
-    nodeStroke: "#4a062f",
-    nodeGlow: "rgba(122, 10, 79, 0.2)",
-    text: "rgba(74, 42, 61,",
+    orbit: "rgba(99, 102, 241, 0.18)",
+    link: "rgba(99, 102, 241, 0.35)",
+    pulse: "rgba(190, 200, 255, 0.95)",
+    hubFill: "#6d3be0",
+    hubStroke: "#e4daff",
+    hubRing: "rgba(99, 102, 241, 0.45)",
+    hubGlow: "rgba(110, 90, 240, 0.28)",
+    nodeFill: "#6d3be0",
+    nodeStroke: "#4b2e9a",
+    nodeGlow: "rgba(109, 59, 224, 0.3)",
+    text: "rgba(30, 27, 75,",
   },
 };
 
 const C = COLORS[THEME.active] || COLORS["multi-color"];
 
-// 🎨 The 3 Colors for the Nodes
+// 🎨 Hub colours (glossy purple → blue)
+// light = highlight side, base = body, dark = shadow side
+const HUB_COLOR = {
+  light: "#a58bff",
+  base: "#6d3be0",
+  dark: "#2457c9",
+};
+
+// 🎨 The 3 Colors for the Nodes: blue, violet, magenta
 const NODE_COLORS = [
   {
-    fill: "#a04a68",
-    stroke: "#7a0a4f",
-    glow: "rgba(160, 74, 104, 0.2)",
-    pulse: "rgba(245, 198, 208, 0.9)",
+    light: "#9ec0ff",
+    fill: "#2f6df0",
+    dark: "#1a3fb0",
+    stroke: "#1d4fd0",
+    line: "59, 130, 246",
+    glow: "rgba(47, 109, 240, 0.35)",
+    pulse: "rgba(160, 195, 255, 0.95)",
   },
   {
-    fill: "#7d5a85",
-    stroke: "#4a2a3d",
-    glow: "rgba(125, 90, 133, 0.2)",
-    pulse: "rgba(212, 184, 217, 0.9)",
+    light: "#cbb0ff",
+    fill: "#7c3aed",
+    dark: "#4c1d95",
+    stroke: "#5b21b6",
+    line: "124, 58, 237",
+    glow: "rgba(124, 58, 237, 0.35)",
+    pulse: "rgba(205, 180, 255, 0.95)",
   },
   {
-    fill: "#4a7ba0",
-    stroke: "#2f5470",
-    glow: "rgba(74, 123, 160, 0.2)",
-    pulse: "rgba(184, 212, 232, 0.9)",
+    light: "#efaaff",
+    fill: "#b02fd8",
+    dark: "#6b1a8a",
+    stroke: "#8a22ad",
+    line: "176, 47, 216",
+    glow: "rgba(176, 47, 216, 0.35)",
+    pulse: "rgba(235, 185, 255, 0.95)",
   },
 ];
 // ═══════════════════════════════════════════════════════════════
@@ -158,13 +175,17 @@ export default function GenAINetwork({ title = "Generative AI" }) {
       };
     };
 
-    const hex = (x, y, r, fill, stroke, lw = 1) => {
+    const hexPath = (x, y, r) => {
       ctx.beginPath();
       for (let i = 0; i < 6; i++) {
         const a = (Math.PI / 3) * i;
         ctx[i ? "lineTo" : "moveTo"](x + r * Math.cos(a), y + r * Math.sin(a));
       }
       ctx.closePath();
+    };
+
+    const hex = (x, y, r, fill, stroke, lw = 1) => {
+      hexPath(x, y, r);
       if (fill) {
         ctx.fillStyle = fill;
         ctx.fill();
@@ -174,6 +195,65 @@ export default function GenAINetwork({ title = "Generative AI" }) {
         ctx.strokeStyle = stroke;
         ctx.stroke();
       }
+    };
+
+    // Same hexagon (same size, same position) — only the paint changes:
+    // shaded gradient body + glossy top sheen + small specular spot.
+    const glossHex = (x, y, r, col, stroke, lw = 1) => {
+      const body = ctx.createRadialGradient(
+        x - r * 0.35,
+        y - r * 0.4,
+        r * 0.05,
+        x,
+        y,
+        r * 1.05,
+      );
+      body.addColorStop(0, col.light);
+      body.addColorStop(0.45, col.base || col.fill);
+      body.addColorStop(1, col.dark);
+      hex(x, y, r, body, stroke, lw);
+
+      ctx.save();
+      hexPath(x, y, r);
+      ctx.clip();
+
+      // top sheen
+      const sheen = ctx.createLinearGradient(x, y - r, x, y + r * 0.1);
+      sheen.addColorStop(0, "rgba(255, 255, 255, 0.55)");
+      sheen.addColorStop(1, "rgba(255, 255, 255, 0.05)");
+      ctx.beginPath();
+      ctx.ellipse(x, y - r * 0.5, r * 0.9, r * 0.55, 0, 0, Math.PI * 2);
+      ctx.fillStyle = sheen;
+      ctx.fill();
+
+      // bottom bounce light
+      const bounce = ctx.createRadialGradient(
+        x + r * 0.2,
+        y + r * 0.65,
+        0,
+        x + r * 0.2,
+        y + r * 0.65,
+        r * 0.7,
+      );
+      bounce.addColorStop(0, "rgba(255, 255, 255, 0.25)");
+      bounce.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = bounce;
+      ctx.fillRect(x - r, y - r, r * 2, r * 2);
+
+      // specular spot
+      const spec = ctx.createRadialGradient(
+        x - r * 0.38,
+        y - r * 0.42,
+        0,
+        x - r * 0.38,
+        y - r * 0.42,
+        r * 0.3,
+      );
+      spec.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+      spec.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = spec;
+      ctx.fillRect(x - r, y - r, r * 2, r * 2);
+      ctx.restore();
     };
 
     const glow = (x, y, r, color, fadeColor) => {
@@ -206,18 +286,21 @@ export default function GenAINetwork({ title = "Generative AI" }) {
       const pts = NODES.map((n) => position(n, t));
       const Center = { x: W / 2, y: cy() };
       const at = (i) => (i < 0 ? Center : pts[i]);
+      const lineRgb = (i) => (i < 0 ? "79, 109, 240" : NODE_COLORS[i % 3].line);
 
-      // links with travelling pulses
+      // links with travelling pulses (same width and motion, gradient colour)
       LINKS.forEach(([a, b], i) => {
         const p = at(a),
           q = at(b);
-        const colorIndex = b >= 0 ? b % 3 : 0;
-        const linkColor = NODE_COLORS[colorIndex].glow;
+
+        const lg = ctx.createLinearGradient(p.x, p.y, q.x, q.y);
+        lg.addColorStop(0, `rgba(${lineRgb(a)}, 0.45)`);
+        lg.addColorStop(1, `rgba(${lineRgb(b)}, 0.45)`);
 
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
-        ctx.strokeStyle = linkColor;
+        ctx.strokeStyle = lg;
         ctx.lineWidth = 1.2;
         ctx.stroke();
 
@@ -243,7 +326,7 @@ export default function GenAINetwork({ title = "Generative AI" }) {
       const hr = 60 * (1 + 0.03 * beat);
 
       hex(Center.x, Center.y, hr + 10 + 5 * beat, null, C.hubRing);
-      hex(Center.x, Center.y, hr, C.hubFill, C.hubStroke, 2);
+      glossHex(Center.x, Center.y, hr, HUB_COLOR, C.hubStroke, 2);
 
       ctx.fillStyle = "#ffffff";
       ctx.font = `700 ${Math.round(Math.max(16, S * 0.022))}px ${FONT}`;
@@ -266,7 +349,7 @@ export default function GenAINetwork({ title = "Generative AI" }) {
             nodeColor.glow,
             nodeColor.glow.replace(/\d?\.?\d+\)$/, "0)"),
           );
-          hex(p.x, p.y, r, nodeColor.fill, nodeColor.stroke, 1.5);
+          glossHex(p.x, p.y, r, nodeColor, nodeColor.stroke, 1.5);
 
           ctx.fillStyle = `${C.text}${0.85 + 0.15 * p.depth})`;
           ctx.font = `600 ${Math.round(Math.max(13, S * 0.0165) * sc)}px ${FONT}`;

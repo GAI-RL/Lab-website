@@ -95,9 +95,10 @@ export default function Hero() {
           this.y,
           adjustedRadius * 2.5,
         );
-        gradient.addColorStop(0, `rgba(255, 182, 193, ${0.6 * scale})`);
-        gradient.addColorStop(0.5, `rgba(176, 86, 138, ${0.3 * scale})`);
-        gradient.addColorStop(1, "rgba(176, 86, 138, 0)");
+        // Updated to Purple/Blue theme
+        gradient.addColorStop(0, `rgba(109, 59, 224, ${0.6 * scale})`); // Brand Purple
+        gradient.addColorStop(0.5, `rgba(38, 118, 232, ${0.3 * scale})`); // Rose Blue
+        gradient.addColorStop(1, "rgba(38, 118, 232, 0)");
 
         ctx.beginPath();
         ctx.arc(this.x, this.y, adjustedRadius * 2.5, 0, Math.PI * 2);
@@ -107,7 +108,8 @@ export default function Hero() {
         // Core node
         ctx.beginPath();
         ctx.arc(this.x, this.y, adjustedRadius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 218, 224, ${0.9})`;
+        // Updated to a soft lavender-white for the core
+        ctx.fillStyle = `rgba(240, 235, 255, ${0.9})`;
         ctx.fill();
 
         // Inner highlight
@@ -119,7 +121,7 @@ export default function Hero() {
           0,
           Math.PI * 2,
         );
-        ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)"; // Pure white highlight
         ctx.fill();
       }
     }
@@ -166,7 +168,9 @@ export default function Hero() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(176, 86, 138, ${opacity})`;
+
+            // Updated line color to Brand Purple
+            ctx.strokeStyle = `rgba(109, 59, 224, ${opacity})`;
             ctx.lineWidth = width;
             ctx.stroke();
           }
@@ -219,7 +223,7 @@ export default function Hero() {
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, []); // Empty dependency array - run once and never restart
+  }, []);
 
   return (
     <section
@@ -263,7 +267,6 @@ export default function Hero() {
               className="grad"
               words={[
                 "Advance Artificial Intelligence",
-
                 "Advance Intelligent Innovation",
                 "Shape the Future of Technology",
                 "Push the Boundaries of Research",

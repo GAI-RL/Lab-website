@@ -424,7 +424,7 @@ export const projects = [
   {
     id: "blackloaddictionary",
     tag: "NLP",
-    title: "Black Load Dictionary",
+    title: "Black Law Dictionary",
     text: "An intelligent grammar correction tool that detects grammatical errors and provides accurate, well-structured sentences to improve writing quality.",
     img: grammer,
 
@@ -862,3 +862,99 @@ export const footer = {
     { icon: "fas fa-clock", text: "Mon–Fri, 09:00AM–5:00PM" },
   ],
 };
+
+// src/data/content.js
+
+/// src/data/content.js
+
+// Every URL below is a highly reliable SVG link that will render perfectly on your site.
+export const techStack = [
+  {
+    items: [
+      {
+        name: "ChatGPT",
+        label: "GPT",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+      },
+      {
+        name: "Hugging Face",
+        label: "Hugging Face",
+        img: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+      },
+      {
+        name: "LangChain",
+        label: "LangChain",
+        img: "https://cdn.worldvectorlogo.com/logos/langchain-1.svg",
+      },
+
+      {
+        name: "Mistral",
+        label: "Mistral",
+        img: "https://cdn.simpleicons.org/mistralai",
+      },
+      {
+        name: "Claude",
+        label: "Claude",
+        img: "https://cdn.simpleicons.org/anthropic",
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        name: "PyTorch",
+        label: "PyTorch",
+        img: "https://cdn.worldvectorlogo.com/logos/pytorch-2.svg",
+      },
+      {
+        name: "TensorFlow",
+        label: "TensorFlow",
+        img: "https://cdn.worldvectorlogo.com/logos/tensorflow-2.svg",
+      },
+      {
+        name: "Scikit-Learn",
+        label: "Scikit-Learn",
+        img: "https://cdn.simpleicons.org/scikitlearn",
+      },
+      {
+        name: "Pandas",
+        label: "Pandas",
+        img: "https://cdn.simpleicons.org/pandas",
+      },
+      {
+        name: "NumPy",
+        label: "NumPy",
+        img: "https://cdn.simpleicons.org/numpy",
+      },
+      {
+        name: "Jupyter",
+        label: "Jupyter",
+        img: "https://cdn.simpleicons.org/jupyter",
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        name: "Azure",
+        label: "Azure",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg",
+      },
+      {
+        name: "AWS",
+        label: "AWS",
+        img: "https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg",
+      },
+      {
+        name: "Google Cloud",
+        label: "Google Cloud",
+        img: "https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg",
+      },
+      {
+        name: "IBM Watson",
+        label: "IBM Watson",
+        img: "https://cdn.worldvectorlogo.com/logos/ibm-watson.svg",
+      },
+    ],
+  },
+];
