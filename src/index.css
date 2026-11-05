@@ -321,7 +321,7 @@ nav > *,
   color: var(--blue);
 }
 
-/* ── BUTTONS (shared gradient style: 3 colours, slides on hover) ── */
+/* ── BUTTONS (shared gradient style) ── */
 .btn-nav,
 .btn-solid,
 .f-btn,
@@ -382,7 +382,6 @@ nav > *,
   border-color: var(--border-strong);
 }
 
-/* Hamburger bars */
 .nav-toggle .bar {
   display: block;
   width: 18px;
@@ -522,10 +521,6 @@ nav > *,
   }
 }
 
-/* Hero headline
-   Height is LOCKED to a fixed number of lines (--hero-lines) so the typewriter
-   wrapping to a 2nd/3rd line or deleting back never moves the sections below.
-   Tune --hero-lines per breakpoint to match your longest typed phrase. */
 .hero-h1 {
   --hero-lines: 4;
   font-family: var(--font-sans) !important;
@@ -553,19 +548,15 @@ nav > *,
   }
 }
 
-/* Gradient text (original italic serif) */
 .hero-h1 .grad {
   background: var(--grad-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.01em;
-
-  /* Give italic overhang room on BOTH sides, on every wrapped line */
   padding: 0.1em 0.2em 0.1em 0.05em;
   margin: 0 -0.2em 0 -0.05em;
   -webkit-box-decoration-break: clone;
@@ -706,7 +697,6 @@ nav > *,
   margin-left: 4px;
   font-weight: 400;
   animation: blink 0.8s step-end infinite;
-
   -webkit-text-fill-color: #8b5cf6 !important;
   color: #8b5cf6 !important;
   background: none !important;
@@ -801,7 +791,6 @@ nav > *,
   border: 1.5px solid transparent;
 }
 
-/* Ghost button: blue→purple gradient border, fills with gradient on hover */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
@@ -1268,7 +1257,14 @@ nav > *,
   cursor: pointer;
   width: 100%;
   transition: all 0.28s ease;
+
+  /* Add these two lines to fix the link styling */
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
 }
+
 .svc-card:hover {
   background: var(--hover-bg);
   border-color: color-mix(in srgb, var(--blue) 25%, transparent);
@@ -1947,6 +1943,7 @@ nav > *,
   font-size: var(--fs-xs);
   color: var(--muted);
 }
+
 @media (max-width: 1000px) {
   .impact-panel {
     margin: 40px auto 0;
@@ -2279,6 +2276,7 @@ nav > *,
   transform: scale(1.05);
   filter: brightness(1) saturate(1);
 }
+
 @media (max-width: 1000px) {
   .events-top-grid {
     grid-template-columns: 1fr;
@@ -2446,6 +2444,7 @@ nav > *,
   color: var(--muted);
   margin-top: 6px;
 }
+
 @media (max-width: 1000px) {
   .team-sec {
     padding: 60px 24px;
@@ -2484,48 +2483,56 @@ nav > *,
   margin: 12px auto 0;
   text-align: center;
 }
+
+/* All logos on ONE line (desktop) */
 .collab-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  align-items: start;
-  justify-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
   padding: 32px 0;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
+
 .collab-card {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
   text-decoration: none;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   background: transparent;
   border: none;
   padding: 0;
-  max-width: 160px;
+  transition: transform 0.35s ease;
 }
 .collab-card:hover {
   transform: translateY(-6px);
 }
+
 .collab-logo-wrap {
-  width: 140px;
-  height: 140px;
+  width: 100%;
+  max-width: 140px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: #ffffff;
-  border: none;
+  border: 1px solid rgba(109, 59, 224, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 22px;
-  box-shadow: 0 4px 20px rgba(30, 27, 75, 0.05);
+  padding: 26px;
+  box-shadow: 0 8px 24px rgba(109, 59, 224, 0.06);
   transition: all 0.35s ease;
+  margin-bottom: 18px;
 }
 .collab-card:hover .collab-logo-wrap {
-  box-shadow: 0 14px 32px rgba(30, 27, 75, 0.12);
-  background: rgba(91, 61, 240, 0.04);
+  box-shadow: 0 14px 32px rgba(109, 59, 224, 0.12);
+  background: rgba(109, 59, 224, 0.04);
+  border-color: rgba(109, 59, 224, 0.15);
 }
 .collab-logo-wrap img {
   max-width: 100%;
@@ -2533,12 +2540,11 @@ nav > *,
   object-fit: contain;
   display: block;
   transition: transform 0.35s ease;
-  color: transparent;
-  font-size: 0;
 }
 .collab-card:hover .collab-logo-wrap img {
   transform: scale(1.06);
 }
+
 .collab-name {
   font-family: var(--font-sans);
   font-size: var(--fs-base);
@@ -2546,7 +2552,33 @@ nav > *,
   color: var(--c-ink, #1e1b3a);
   line-height: 1.35;
   letter-spacing: 0;
-  max-width: 140px;
+  max-width: 160px;
+}
+
+/* Tablet: wrap into rows of 3 */
+@media (max-width: 900px) {
+  .collab-grid {
+    flex-wrap: wrap;
+    gap: 36px 24px;
+  }
+  .collab-card {
+    flex: 0 0 calc(33.333% - 16px);
+    max-width: none;
+  }
+}
+
+/* Phone: rows of 2 */
+@media (max-width: 640px) {
+  .collab-sec {
+    padding: 48px 20px;
+  }
+  .collab-card {
+    flex: 0 0 calc(50% - 12px);
+  }
+  .collab-logo-wrap {
+    max-width: 110px;
+    padding: 18px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2574,8 +2606,8 @@ footer::before {
 }
 .footer-top {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px;
   padding-bottom: 24px;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border);
@@ -2729,7 +2761,32 @@ footer .footer-brand .footer-join-btn i {
 footer .footer-brand .footer-join-btn:hover i {
   transform: translateX(4px);
 }
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER MAP
+   ═══════════════════════════════════════════════════════════════ */
+.footer-map-wrapper {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 15px rgba(109, 59, 224, 0.05);
+  position: relative;
+  max-width: 300px; /* Keeps it neat inside the column */
+}
 
+.footer-map-wrapper iframe {
+  display: block;
+  /* Removed the grayscale filter so it's always in color */
+  filter: none;
+  transition: all 0.4s ease;
+}
+
+/* You can also delete the :hover block entirely since it's already in color */
+
+/* Turns to full color on hover */
+.footer-map-wrapper:hover iframe {
+  filter: grayscale(0%) opacity(1);
+}
 /* ═══════════════════════════════════════════════════════════════
    FLOATING CHAT BUTTON
    ═══════════════════════════════════════════════════════════════ */
@@ -3194,7 +3251,6 @@ footer .footer-brand .footer-join-btn:hover i {
     color: var(--c-brand);
     border-color: var(--border-strong);
   }
-
   .side-panel-links {
     display: flex;
     flex-direction: column;
@@ -3231,7 +3287,6 @@ footer .footer-brand .footer-join-btn:hover i {
       inset 0 1px 0 rgba(255, 255, 255, 0.2),
       0 4px 14px color-mix(in srgb, var(--c-brand) 25%, transparent);
   }
-
   .side-panel-footer {
     display: block;
     margin-top: auto;
@@ -3428,19 +3483,6 @@ footer .footer-brand .footer-join-btn:hover i {
     top: 0;
     height: 260px;
   }
-  .collab-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-  }
-  .collab-logo-wrap {
-    width: 120px;
-    height: 120px;
-    padding: 18px;
-  }
-  .collab-logo-wrap img {
-    max-width: 84px;
-    max-height: 84px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -3523,15 +3565,6 @@ footer .footer-brand .footer-join-btn:hover i {
   .about-visual {
     height: 380px;
   }
-  .collab-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .collab-logo-wrap {
-    width: 110px;
-    height: 110px;
-    padding: 16px;
-  }
   .footer-top {
     gap: 32px;
   }
@@ -3598,15 +3631,6 @@ footer .footer-brand .footer-join-btn:hover i {
   .cta-content,
   .join-form {
     padding: 22px 16px;
-  }
-  .collab-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .collab-logo-wrap {
-    width: 90px;
-    height: 90px;
-    padding: 14px;
   }
   .team-track .team-card {
     width: 240px;
@@ -3736,7 +3760,6 @@ footer .footer-brand .footer-join-btn:hover i {
   footer .footer-brand .footer-join-btn:hover i {
     transform: translateX(4px);
   }
-  /* Make static footer items look exactly like the links */
   .footer-contact-static {
     color: var(--c-ink);
     font-size: var(--fs-base);
@@ -3754,73 +3777,76 @@ footer .footer-brand .footer-join-btn:hover i {
     min-width: 14px;
     text-align: center;
   }
+  @media (max-width: 1000px) {
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   TECH STACK SECTION (open logo wall, no cards)
-   Columns are flattened with display: contents so all items flow
-   into one centered, wrapping row layout. No JSX change needed.
+   TECH STACK SECTION
    ═══════════════════════════════════════════════════════════════ */
 /* ═══════════════════════════════════════════════════════════════
-   TECH STACK SECTION (Categorized 3-Column Layout)
-   ═══════════════════════════════════════════════════════════════ */
-/* ═══════════════════════════════════════════════════════════════
-   TECH STACK SECTION (Perfect Categorized Layout)
+   TECH STACK SECTION (compact logos, original heading)
    ═══════════════════════════════════════════════════════════════ */
 .tech-stack-sec {
-  padding: 80px 64px;
+  padding: 32px 64px;
   background: var(--bg);
 }
 
 .tech-stack-inner {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 .tech-stack-hdr {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* The 3-Column Wrapper */
 .tech-columns-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
 }
 
-/* Individual Column */
 .tech-column {
-  padding: 0 40px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
 }
 
-/* The Gold Vertical Divider */
-/* The Gradient Vertical Divider */
+/* Soft, faded vertical divider */
 .tech-column:not(:last-child) {
-  border-right: none; /* Remove solid border */
-
-  /* Gradient from Blue (#2676e8) to Purple (#6d3be0) */
-  background-image: linear-gradient(to bottom, #2676e8, #6d3be0);
-  background-size: 1px 100%; /* 1px wide, 100% tall */
+  border-right: none !important;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(91, 61, 240, 0) 0%,
+    rgba(91, 61, 240, 0.22) 20%,
+    rgba(139, 63, 240, 0.22) 80%,
+    rgba(139, 63, 240, 0) 100%
+  );
+  background-size: 1px 100%;
   background-repeat: no-repeat;
-  background-position: right center; /* Position on the right edge */
+  background-position: right center;
 }
 
-/* The Inner 2x3 Grid */
-/* The Inner 2x3 Grid */
 .tech-grid-inner {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 items side-by-side */
-  gap: 48px 20px; /* 48px vertical gap, 20px horizontal gap */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 10px;
   align-items: center;
 }
 
-/* Individual Item */
 .tech-item {
   display: flex;
   flex-direction: column;
@@ -3829,71 +3855,66 @@ footer .footer-brand .footer-join-btn:hover i {
   text-align: center;
   transition: transform 0.3s ease;
 }
-
-/* Hover effect just lifts the item slightly */
 .tech-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
-/* The Logo Container (No grey background) */
 .tech-icon-box {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .tech-icon-box img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  /* Full color all the time! */
   filter: none;
 }
 
 .tech-name {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-/* ═══════════════════════════════════════════════════════════════
-   Responsive
-   ═══════════════════════════════════════════════════════════════ */
+
 @media (max-width: 900px) {
   .tech-stack-sec {
-    padding: 60px 24px;
+    padding: 28px 24px;
   }
-
-  /* Stack columns vertically on mobile */
   .tech-columns-wrapper {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 28px;
   }
-
   .tech-column {
     padding: 0;
   }
-
-  /* Change vertical gold line to horizontal */
-  /* The Gradient Vertical Divider */
+  /* Soft, faded horizontal divider on mobile */
   .tech-column:not(:last-child) {
-    border-right: none !important; /* Force remove any solid borders */
-
-    /* Gradient from Blue (#2676e8) to Purple (#6d3be0) */
-    background-image: linear-gradient(to bottom, #2676e8, #6d3be0);
-    background-size: 1px 100%;
+    border-right: none !important;
+    background-image: linear-gradient(
+      to right,
+      rgba(91, 61, 240, 0) 0%,
+      rgba(91, 61, 240, 0.22) 20%,
+      rgba(139, 63, 240, 0.22) 80%,
+      rgba(139, 63, 240, 0) 100%
+    );
+    background-size: 100% 1px;
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: bottom center;
+    padding-bottom: 28px;
   }
   .tech-grid-inner {
-    gap: 32px 20px;
+    gap: 18px 10px;
   }
 }
+
 /* ═══════════════════════════════════════════════════════════════
    CHATBOT
    ═══════════════════════════════════════════════════════════════ */
@@ -4099,33 +4120,6 @@ footer .footer-brand .footer-join-btn:hover i {
     width: auto;
     max-height: 70vh;
   }
-}
-/* ═══════════════════════════════════════════════════════════════
-   SCROLL REVEAL ANIMATIONS
-   ═══════════════════════════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Optional: Add a slight delay for elements inside a grid */
-.reveal-delay-1 {
-  transition-delay: 100ms;
-}
-.reveal-delay-2 {
-  transition-delay: 200ms;
-}
-.reveal-delay-3 {
-  transition-delay: 300ms;
 }
 
 @tailwind utilities;

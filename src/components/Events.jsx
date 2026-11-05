@@ -26,7 +26,7 @@ export default function Events() {
         <div className="events-hdr">
           <span className="section-tag">Events & Highlights</span>
           <h2 className="section-h2">
-            Moments from <span>our lab</span>
+            Moments from <span>Our Lab</span>
           </h2>
           <p className="section-sub">
             Talks, workshops, student learning and research milestones.

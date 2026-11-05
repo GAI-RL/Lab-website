@@ -262,14 +262,14 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-h1">
-            Researching the systems shaping how we{" "}
+            Building the next generation of Generative AI to{" "}
             <Typewriter
               className="grad"
               words={[
-                "Advance Artificial Intelligence",
-                "Advance Intelligent Innovation",
-                "Shape the Future of Technology",
-                "Push the Boundaries of Research",
+                "Turn Imagination into Reality",
+                "Redefine How the World Creates",
+                "Solve Real-World Problems",
+                "Solve Impossible Challenges",
               ]}
               typeSpeed={70}
               deleteSpeed={60}

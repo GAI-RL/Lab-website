@@ -30,25 +30,15 @@ function ResearchCanvas({ variant }) {
     addEventListener("resize", size);
 
     /* ── Palette ── */
-    const ACCENT = "#b3173f";
-    const ROSE = "#7a1238";
-    const IVORY = "#3b0a24";
-    const LABEL = "rgba(59,10,36,0.7)";
-    const LABEL_SOFT = "rgba(59,10,36,0.5)";
-    const DOT = "#b3173f";
+    const BRAND = "#5b3df0";
+    const ROSE = "#1e6bff";
+    const DEEP = "#3b2bb8";
+    const CYAN = "#00c5df";
+    const INK = "#1e1b3a";
 
-    const rose = (a) => `rgba(122,18,56,${a})`;
-    const accent = (a) => `rgba(179,23,63,${a})`;
-
-    const glow = (x, y, r, a, c = "179,23,63") => {
-      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-      g.addColorStop(0, `rgba(${c},${a})`);
-      g.addColorStop(1, `rgba(${c},0)`);
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, 6.283);
-      ctx.fill();
-    };
+    const brand = (a) => `rgba(91, 61, 240, ${a})`;
+    const rose = (a) => `rgba(30, 107, 255, ${a})`;
+    const deep = (a) => `rgba(59, 43, 184, ${a})`;
 
     /* ── 1. AGENTIC AI ── */
     function drawAgentic(t) {
@@ -69,26 +59,26 @@ function ResearchCanvas({ variant }) {
 
       const THEME_COLORS = [
         {
-          main: "#a04a68",
-          light: "rgba(160, 74, 104, 0.08)",
-          glow: (opacity) => `rgba(160, 74, 104, ${opacity * 0.4})`,
+          main: BRAND,
+          light: brand(0.1),
+          glow: (o) => brand(o * 0.4),
           icon: "#ffffff",
         },
         {
-          main: "#7d5a85",
-          light: "rgba(125, 90, 133, 0.08)",
-          glow: (opacity) => `rgba(125, 90, 133, ${opacity * 0.4})`,
+          main: ROSE,
+          light: rose(0.1),
+          glow: (o) => rose(o * 0.4),
           icon: "#ffffff",
         },
         {
-          main: "#4a7ba0",
-          light: "rgba(74, 123, 160, 0.08)",
-          glow: (opacity) => `rgba(74, 123, 160, ${opacity * 0.4})`,
+          main: DEEP,
+          light: deep(0.1),
+          glow: (o) => deep(o * 0.4),
           icon: "#ffffff",
         },
       ];
 
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.15)";
+      ctx.strokeStyle = deep(0.15);
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(positions[0][0], cy);
@@ -97,7 +87,7 @@ function ResearchCanvas({ variant }) {
 
       ctx.setLineDash([4, 8]);
       ctx.lineDashOffset = -t * 20;
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.3)";
+      ctx.strokeStyle = deep(0.3);
       ctx.beginPath();
       ctx.moveTo(positions[0][0], cy);
       ctx.lineTo(positions[positions.length - 1][0], cy);
@@ -172,7 +162,7 @@ function ResearchCanvas({ variant }) {
       });
 
       ctx.font = "12px Inter, system-ui, sans-serif";
-      ctx.fillStyle = "rgba(42, 5, 25, 0.5)";
+      ctx.fillStyle = deep(0.5);
       ctx.textAlign = "center";
       ctx.fillText("Plan · Act · Verify · Repeat", W / 2, cy + H * 0.28);
       ctx.textAlign = "left";
@@ -212,7 +202,7 @@ function ResearchCanvas({ variant }) {
       ctx.fillStyle = g;
       ctx.fill();
 
-      ctx.strokeStyle = rose(0.6);
+      ctx.strokeStyle = deep(0.6);
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(-L / 2, 0);
@@ -220,7 +210,7 @@ function ResearchCanvas({ variant }) {
       ctx.stroke();
 
       ctx.lineWidth = 1;
-      ctx.strokeStyle = rose(0.4);
+      ctx.strokeStyle = deep(0.4);
       for (let k = 1; k < 11; k++) {
         const x = -L / 2 + (L * k) / 11;
         const y = hh(x) * 0.85;
@@ -255,17 +245,17 @@ function ResearchCanvas({ variant }) {
           ctx.closePath();
           if (on) {
             lit.push([x, y]);
-            ctx.fillStyle = accent(0.6);
+            ctx.fillStyle = brand(0.6);
             ctx.fill();
-            ctx.strokeStyle = "rgba(255,200,195,.9)";
+            ctx.strokeStyle = "rgba(255,255,255,.9)";
           } else {
-            ctx.strokeStyle = "rgba(247,242,238,.28)";
+            ctx.strokeStyle = deep(0.28);
           }
           ctx.stroke();
         }
       }
 
-      ctx.strokeStyle = "rgba(255,215,210,.55)";
+      ctx.strokeStyle = rose(0.55);
       for (let i = 0; i < lit.length; i++) {
         for (let j = i + 1; j < lit.length; j++) {
           const a = lit[i][0] - lit[j][0];
@@ -280,9 +270,9 @@ function ResearchCanvas({ variant }) {
       }
 
       if (sx > -L / 2 && sx < L / 2) {
-        ctx.shadowColor = "#e7a9a0";
+        ctx.shadowColor = BRAND;
         ctx.shadowBlur = 16;
-        ctx.strokeStyle = "rgba(255,230,225,.95)";
+        ctx.strokeStyle = brand(0.95);
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(sx, -w * 1.25);
@@ -302,18 +292,18 @@ function ResearchCanvas({ variant }) {
         const Y = H / 2 + x0 * Math.sin(ang) + y0 * Math.cos(ang);
         const tw = ctx.measureText(sp[3]).width + 16;
 
-        ctx.strokeStyle = ACCENT;
+        ctx.strokeStyle = BRAND;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(X, Y);
         ctx.lineTo(X + 30, Y - 40);
         ctx.stroke();
 
-        ctx.fillStyle = "rgba(59,10,36,0.9)";
+        ctx.fillStyle = deep(0.9);
         ctx.fillRect(X + 30, Y - 52, tw, 24);
-        ctx.strokeStyle = ACCENT;
+        ctx.strokeStyle = BRAND;
         ctx.strokeRect(X + 30, Y - 52, tw, 24);
-        ctx.fillStyle = "#f7f2ee";
+        ctx.fillStyle = "#ffffff";
         ctx.fillText(sp[3], X + 38, Y - 40);
       }
       ctx.textBaseline = "alphabetic";
@@ -328,10 +318,10 @@ function ResearchCanvas({ variant }) {
       const bx = cx - size / 2;
       const by = cy - size / 2;
 
-      const labelColors = ["#a04a68", "#7d5a85", "#4a7ba0"];
+      const labelColors = [BRAND, ROSE, CYAN];
 
       const bl = size * 0.14;
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.4)";
+      ctx.strokeStyle = deep(0.4);
       ctx.lineWidth = 2;
       [
         [bx, by, 1, 1],
@@ -346,7 +336,7 @@ function ResearchCanvas({ variant }) {
         ctx.stroke();
       });
 
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.1)";
+      ctx.strokeStyle = deep(0.1);
       ctx.lineWidth = 1;
       for (let i = 1; i < 6; i++) {
         ctx.beginPath();
@@ -365,7 +355,7 @@ function ResearchCanvas({ variant }) {
       ];
       blobs.forEach((b) => {
         const bob = Math.sin(t * 0.8 + b.x * 6) * 3;
-        ctx.fillStyle = `rgba(160, 74, 104, ${b.a})`;
+        ctx.fillStyle = brand(b.a);
         ctx.beginPath();
         ctx.ellipse(
           bx + b.x * size + bob,
@@ -383,13 +373,13 @@ function ResearchCanvas({ variant }) {
       const scanY = by + scanProgress * size;
 
       const grd = ctx.createLinearGradient(0, scanY - 24, 0, scanY + 24);
-      grd.addColorStop(0, "rgba(160, 74, 104, 0)");
-      grd.addColorStop(0.5, "rgba(160, 74, 104, 0.3)");
-      grd.addColorStop(1, "rgba(160, 74, 104, 0)");
+      grd.addColorStop(0, brand(0));
+      grd.addColorStop(0.5, brand(0.3));
+      grd.addColorStop(1, brand(0));
       ctx.fillStyle = grd;
       ctx.fillRect(bx, scanY - 24, size, 48);
 
-      ctx.strokeStyle = "#a04a68";
+      ctx.strokeStyle = BRAND;
       ctx.lineWidth = 1.6;
       ctx.beginPath();
       ctx.moveTo(bx, scanY);
@@ -407,7 +397,6 @@ function ResearchCanvas({ variant }) {
       findings.forEach((f, i) => {
         const fx = bx + f.x * size;
         const fy = by + f.y * size;
-        const age = 1;
         const pulse = 0.6 + 0.4 * Math.sin(t * 3 + f.x * 4);
         const currentColor = labelColors[i % 3];
 
@@ -456,7 +445,7 @@ function ResearchCanvas({ variant }) {
       });
 
       ctx.font = "10px Inter, system-ui, sans-serif";
-      ctx.fillStyle = "rgba(42, 5, 25, 0.5)";
+      ctx.fillStyle = deep(0.5);
       ctx.textAlign = "left";
       ctx.fillText("SCAN · ACTIVE", bx + 12, by + 18);
       ctx.fillText(
@@ -466,7 +455,7 @@ function ResearchCanvas({ variant }) {
       );
 
       ctx.font = "12px Inter, system-ui, sans-serif";
-      ctx.fillStyle = "rgba(42, 5, 25, 0.6)";
+      ctx.fillStyle = deep(0.6);
       ctx.textAlign = "center";
       ctx.fillText("Detect · Annotate · Report", cx, cy + size / 2 + 34);
       ctx.textAlign = "left";
@@ -479,24 +468,21 @@ function ResearchCanvas({ variant }) {
       const cx = W / 2;
       const cy = H / 2;
 
-      const colors = ["#a04a68", "#7d5a85", "#4a7ba0"]; // Pink, Purple, Blue
+      const colors = [BRAND, ROSE, DEEP];
 
-      // 1. Draw the "AI Tutor" window frame
       const boxW = Math.min(W * 0.7, 450);
       const boxH = 180;
       const bx = cx - boxW / 2;
       const by = cy - boxH / 2;
 
-      // Window background
       ctx.beginPath();
       ctx.roundRect(bx, by, boxW, boxH, 12);
       ctx.fillStyle = "#ffffff";
       ctx.fill();
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.15)";
+      ctx.strokeStyle = deep(0.15);
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Mac-style window controls (dots)
       ctx.fillStyle = "#f87171";
       ctx.beginPath();
       ctx.arc(bx + 15, by + 15, 5, 0, 6.283);
@@ -510,22 +496,19 @@ function ResearchCanvas({ variant }) {
       ctx.arc(bx + 45, by + 15, 5, 0, 6.283);
       ctx.fill();
 
-      // Window Header Title
-      ctx.fillStyle = "rgba(42, 5, 25, 0.4)";
+      ctx.fillStyle = deep(0.4);
       ctx.font = "600 10px Inter, system-ui, sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("AI Tutor Session", cx, by + 18);
 
-      // Divider line
       ctx.beginPath();
       ctx.moveTo(bx, by + 30);
       ctx.lineTo(bx + boxW, by + 30);
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.1)";
+      ctx.strokeStyle = deep(0.1);
       ctx.stroke();
 
-      // 2. The "Prompt" (Student's question)
       ctx.textAlign = "left";
-      ctx.fillStyle = "rgba(42, 5, 25, 0.5)";
+      ctx.fillStyle = deep(0.5);
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.fillText(
         "Student: Explain photosynthesis based on my level.",
@@ -533,12 +516,9 @@ function ResearchCanvas({ variant }) {
         by + 55,
       );
 
-      // 3. The "Generated Content" (The AI typing)
-      // We use a sine wave to create a "blinking" cursor and text generation effect
       const textSpeed = 0.15;
       const time = t * textSpeed;
 
-      // Line 1 (Pink)
       const line1 = "Photosynthesis is how plants eat...";
       const len1 = Math.floor((time * 10) % (line1.length + 10));
       if (len1 > 0) {
@@ -547,16 +527,14 @@ function ResearchCanvas({ variant }) {
         ctx.fillText(line1.slice(0, len1), bx + 20, by + 85);
       }
 
-      // Line 2 (Purple)
       const line2 = "They use sunlight to turn CO2 into sugar.";
-      const len2 = Math.floor((time * 8) % (line2.length + 15)); // Offset for delay
+      const len2 = Math.floor((time * 8) % (line2.length + 15));
       if (len2 > 0) {
         ctx.fillStyle = colors[1];
         ctx.font = "500 13px Inter, system-ui, sans-serif";
         ctx.fillText(line2.slice(0, len2), bx + 20, by + 110);
       }
 
-      // Line 3 (Blue)
       const line3 = "Think of it like a solar-powered kitchen!";
       const len3 = Math.floor((time * 9) % (line3.length + 20));
       if (len3 > 0) {
@@ -565,17 +543,14 @@ function ResearchCanvas({ variant }) {
         ctx.fillText(line3.slice(0, len3), bx + 20, by + 135);
       }
 
-      // 4. Blinking Cursor at the end of the text
       if (Math.sin(t * 8) > 0) {
         const lastLineLength = Math.max(len1, len2, len3);
-        ctx.fillStyle = "rgba(42, 5, 25, 0.8)";
-        // Calculate approximate cursor X based on the longest line
-        const cursorX = bx + 20 + lastLineLength * 7; // Rough estimate of char width
+        ctx.fillStyle = deep(0.8);
+        const cursorX = bx + 20 + lastLineLength * 7;
         ctx.fillRect(cursorX, by + 123, 6, 14);
       }
 
-      // 5. Caption underneath
-      ctx.fillStyle = "rgba(42, 5, 25, 0.5)";
+      ctx.fillStyle = deep(0.5);
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.textAlign = "center";
       ctx.fillText(
@@ -584,6 +559,7 @@ function ResearchCanvas({ variant }) {
         by + boxH + 30,
       );
     }
+
     /* ── 5. BIOINFORMATICS ── */
     function drawBio(t) {
       ctx.clearRect(0, 0, W, H);
@@ -601,28 +577,26 @@ function ResearchCanvas({ variant }) {
         const x2 = cx - Math.sin(phase) * amp;
         const depth = Math.cos(phase);
 
-        ctx.strokeStyle = `rgba(122,18,56,${0.2 + 0.5 * (1 - Math.abs(depth))})`;
+        ctx.strokeStyle = `rgba(91, 61, 240, ${0.2 + 0.5 * (1 - Math.abs(depth))})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y);
         ctx.lineTo(x2, y);
         ctx.stroke();
 
-        glow(x1, y, 8, 0.25);
-        ctx.fillStyle = ACCENT;
+        ctx.fillStyle = BRAND;
         ctx.beginPath();
         ctx.arc(x1, y, 3 + depth * 1.5, 0, 6.283);
         ctx.fill();
 
-        glow(x2, y, 8, 0.25);
-        ctx.fillStyle = "#7a1238";
+        ctx.fillStyle = ROSE;
         ctx.beginPath();
         ctx.arc(x2, y, 3 - depth * 1.5, 0, 6.283);
         ctx.fill();
       }
 
       ctx.font = "12px Inter, system-ui, sans-serif";
-      ctx.fillStyle = LABEL;
+      ctx.fillStyle = deep(0.7);
       ctx.textAlign = "center";
       ctx.fillText("Genomics · Proteins · Cells", cx, cy + height / 2 + 30);
       ctx.textAlign = "left";
@@ -635,7 +609,7 @@ function ResearchCanvas({ variant }) {
       const cy = H / 2;
       const R = Math.min(W, H) * 0.38;
 
-      const colors = ["#a04a68", "#7d5a85", "#4a7ba0"];
+      const colors = [BRAND, ROSE, CYAN];
       const getRGB = (hex) => {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
@@ -680,7 +654,7 @@ function ResearchCanvas({ variant }) {
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      ctx.strokeStyle = "rgba(42, 5, 25, 0.15)";
+      ctx.strokeStyle = deep(0.15);
       ctx.lineWidth = 1;
       for (let k = 0; k < 6; k++) {
         const a = (k * Math.PI) / 3;
@@ -768,7 +742,7 @@ function ResearchCanvas({ variant }) {
       ctx.fill();
 
       ctx.font = "12px Inter, system-ui, sans-serif";
-      ctx.fillStyle = "rgba(42, 5, 25, 0.6)";
+      ctx.fillStyle = deep(0.6);
       ctx.textAlign = "center";
       ctx.fillText("Detect · Block · Respond", cx, cy + R + 26);
       ctx.textAlign = "left";
@@ -806,6 +780,25 @@ function ResearchCanvas({ variant }) {
 }
 
 /* ─────────────────────────────────────────────
+   Helper to split the title for the gradient
+   ───────────────────────────────────────────── */
+function GradientTitle({ text }) {
+  const words = text.split(" ");
+  if (words.length <= 1) return <span>{text}</span>;
+
+  // Split the array in half
+  const mid = Math.ceil(words.length / 2);
+  const firstHalf = words.slice(0, mid).join(" ");
+  const secondHalf = words.slice(mid).join(" ");
+
+  return (
+    <>
+      {firstHalf} <span>{secondHalf}</span>
+    </>
+  );
+}
+
+/* ─────────────────────────────────────────────
    The six research areas + their content
    ───────────────────────────────────────────── */
 const researchAreas = [
@@ -814,46 +807,46 @@ const researchAreas = [
     title: "Agentic AI",
     intro: "From ideas to intelligent systems that solve real-world problems.",
     feature: {
-      heading: "Autonomous Agents That Plan and Act", // Title Case
+      heading: "Autonomous Agents That Plan and Act",
       text: "Multi-agent systems that decompose long tasks, use tools, verify their own output, and stay under human oversight.",
-      tags: ["Planning", "Tool use", "Multi-agent"], // Keep tags as is, they are usually sentence case
+      tags: ["Planning", "Tool use", "Multi-agent"],
     },
     cards: [
       {
-        title: "Planning & Decomposition", // Title Case
+        title: "Planning & Decomposition",
         text: "Breaking long tasks into reliable sub-steps.",
       },
       {
-        title: "Tool Use & Memory", // Title Case
-        text: "Calling APIs, storing state, and reusing context.", // Added Oxford comma
+        title: "Tool Use & Memory",
+        text: "Calling APIs, storing state, and reusing context.",
       },
       {
-        title: "Safety & Oversight", // Title Case
+        title: "Safety & Oversight",
         text: "Guardrails and human-in-the-loop controls.",
       },
     ],
   },
   {
     id: "agriculture",
-    title: "Crop Intelligence for the Real World", // Title Case
+    title: "Crop Intelligence for the Real World",
     intro:
-      "Where computer vision meets the field - helping farmers see what the eye cannot.", // Used em dash instead of hyphen
+      "Where computer vision meets the field - helping farmers see what the eye cannot.",
     feature: {
-      heading: "AI-Powered Crop Disease Intelligence", // Title Case
+      heading: "AI-Powered Crop Disease Intelligence",
       text: "A multimodal system that combines computer vision, retrieval-augmented generation, and domain knowledge to help identify crop diseases.",
       tags: ["Computer vision", "RAG", "Multimodal"],
     },
     cards: [
       {
-        title: "Yield Prediction", // Title Case
+        title: "Yield Prediction",
         text: "Forecasting harvests from satellite and weather data.",
       },
       {
-        title: "Precision Irrigation", // Title Case
+        title: "Precision Irrigation",
         text: "Sensor-driven scheduling for water efficiency.",
       },
       {
-        title: "Pest Detection", // Title Case
+        title: "Pest Detection",
         text: "Edge models that flag outbreaks early.",
       },
     ],
@@ -863,21 +856,21 @@ const researchAreas = [
     title: "GenAI in Medical",
     intro: "From ideas to intelligent systems that solve real-world problems.",
     feature: {
-      heading: "Clinical Imaging With Vision-Language Models", // Title Case
+      heading: "Clinical Imaging With Vision-Language Models",
       text: "Deep learning pipelines that read scans and draft structured reports, giving radiologists a head start.",
       tags: ["Imaging", "Vision-language", "Clinical"],
     },
     cards: [
       {
-        title: "Radiology Reports", // Title Case
+        title: "Radiology Reports",
         text: "Structured draft reports from imaging.",
       },
       {
-        title: "Retinopathy Screening", // Title Case
+        title: "Retinopathy Screening",
         text: "Early detection from fundus images.",
       },
       {
-        title: "Clinical Decision Support", // Title Case
+        title: "Clinical Decision Support",
         text: "Grounding predictions in guidelines.",
       },
     ],
@@ -887,21 +880,21 @@ const researchAreas = [
     title: "GenAI in Education",
     intro: "From ideas to intelligent systems that solve real-world problems.",
     feature: {
-      heading: "Adaptive Tutoring With LLMs", // Title Case
-      text: "Personalised explanations, practice questions, and hints that adapt to each learner's level and pace.", // Added Oxford comma
+      heading: "Adaptive Tutoring With LLMs",
+      text: "Personalised explanations, practice questions, and hints that adapt to each learner's level and pace.",
       tags: ["LLMs", "Personalisation", "EdTech"],
     },
     cards: [
       {
-        title: "Adaptive Explanations", // Title Case
+        title: "Adaptive Explanations",
         text: "Rewriting content for each learner.",
       },
       {
-        title: "Question Generation", // Title Case
+        title: "Question Generation",
         text: "Auto-generating practice material.",
       },
       {
-        title: "Progress Tracking", // Title Case
+        title: "Progress Tracking",
         text: "Measuring understanding over time.",
       },
     ],
@@ -911,18 +904,18 @@ const researchAreas = [
     title: "GenAI in Bioinformatics",
     intro: "From ideas to intelligent systems that solve real-world problems.",
     feature: {
-      heading: "Protein Structure and Function Prediction", // Title Case
-      text: "Transformer-based models that predict folding, function, and interactions from raw sequence data.", // Added Oxford comma
+      heading: "Protein Structure and Function Prediction",
+      text: "Transformer-based models that predict folding, function, and interactions from raw sequence data.",
       tags: ["Genomics", "Transformers", "Structure"],
     },
     cards: [
       {
-        title: "Variant Classification", // Title Case
+        title: "Variant Classification",
         text: "Identifying pathogenic mutations.",
       },
-      { title: "Protein Folding", text: "Sequence-to-structure prediction." }, // Title Case
+      { title: "Protein Folding", text: "Sequence-to-structure prediction." },
       {
-        title: "Single-Cell Analysis", // Title Case
+        title: "Single-Cell Analysis",
         text: "Clustering and annotation at scale.",
       },
     ],
@@ -932,15 +925,15 @@ const researchAreas = [
     title: "GenAI in Cyber Security",
     intro: "From ideas to intelligent systems that solve real-world problems.",
     feature: {
-      heading: "Anomaly Detection and Automated Defence", // Title Case
+      heading: "Anomaly Detection and Automated Defence",
       text: "Unsupervised models that flag zero-day threats and NLP pipelines that detect phishing in real time.",
       tags: ["Anomaly detection", "NLP", "Defence"],
     },
     cards: [
-      { title: "Network Anomalies", text: "Zero-day detection in traffic." }, // Title Case
-      { title: "Phishing Detection", text: "Real-time email classification." }, // Title Case
+      { title: "Network Anomalies", text: "Zero-day detection in traffic." },
+      { title: "Phishing Detection", text: "Real-time email classification." },
       {
-        title: "Threat Intelligence", // Title Case
+        title: "Threat Intelligence",
         text: "Summarising and correlating reports.",
       },
     ],
@@ -993,7 +986,9 @@ export default function Research() {
       <section className="proj">
         <div className="hero-section">
           <div className="ph">
-            <h2 data-label="Research">Research in practice</h2>
+            <h2 data-label="Research">
+              Research in <span>practice</span>
+            </h2>
             <p>
               Exploring intelligent systems, autonomous agents and applied AI
               through research that connects emerging technologies with
@@ -1011,11 +1006,10 @@ export default function Research() {
 
         {researchAreas.map((area) => (
           <section key={area.id} className="area" id={area.id}>
-            {/* ── NEW EDITORIAL LAYOUT ── */}
+            {/* ── EDITORIAL LAYOUT ── */}
             <div className="editorial-layout">
               {/* LEFT SIDEBAR */}
               <aside className="editorial-sidebar">
-                {/* 👇 Replace the button with this heading 👇 */}
                 <h4 className="sidebar-title">Key Applications</h4>
 
                 <div className="sidebar-cards">
@@ -1030,9 +1024,11 @@ export default function Research() {
 
               {/* MAIN CONTENT */}
               <main className="editorial-main">
-                {/* Header */}
+                {/* Header (Uses the new GradientTitle component) */}
                 <div className="ph">
-                  <h2 data-label="Research Area">{area.title}</h2>
+                  <h2 data-label="Research Area">
+                    <GradientTitle text={area.title} />
+                  </h2>
                   <p>{area.intro}</p>
                 </div>
 

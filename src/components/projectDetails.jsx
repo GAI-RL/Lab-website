@@ -29,6 +29,37 @@ export default function ProjectDetail() {
 
   const isVideo = project?.img && /\.(mp4|webm|mov)$/i.test(project.img);
 
+  // Smart helper to split the title perfectly for the gradient
+  const renderTitle = (title) => {
+    if (!title) return null;
+
+    // Try to find an uppercase letter after the first character (CamelCase split)
+    const splitIndex = title
+      .split("")
+      .findIndex(
+        (char, i) => i > 0 && char === char.toUpperCase() && char !== " ",
+      );
+
+    let finalIndex = splitIndex;
+
+    // If no CamelCase is found, fall back to the nearest space in the middle
+    if (finalIndex === -1) {
+      const mid = Math.ceil(title.length / 2);
+      finalIndex = title.indexOf(" ", mid);
+      if (finalIndex === -1) finalIndex = mid;
+    }
+
+    const firstHalf = title.slice(0, finalIndex);
+    const secondHalf = title.slice(finalIndex);
+
+    return (
+      <>
+        {firstHalf}
+        <span>{secondHalf}</span>
+      </>
+    );
+  };
+
   return (
     <>
       <nav
@@ -41,7 +72,6 @@ export default function ProjectDetail() {
           <img src={logo} alt="GARIL" className="nav-logo-img" />
         </Link>
         <div className="nav-right">
-          {/* Using Link directly to the hash */}
           <Link to="/#projects" className="btn-nav">
             <i
               className="fas fa-arrow-left"
@@ -55,7 +85,6 @@ export default function ProjectDetail() {
 
       <div className="pj-page">
         <div className="pj-inner">
-          {/* Using Link directly to the hash */}
           <Link to="/#projects" className="pj-back">
             <i className="fas fa-arrow-left" aria-hidden="true" /> Back to
             Projects
@@ -65,7 +94,10 @@ export default function ProjectDetail() {
             <div className="pj-tags">
               <span className="pj-chip">{project.tag || "AI Research"}</span>
             </div>
-            <h1 className="pj-title">{project.title}</h1>
+
+            {/* Applying the smart gradient splitter */}
+            <h1 className="pj-title">{renderTitle(project.title)}</h1>
+
             <p className="pj-summary">{project.summary || project.text}</p>
 
             {project.stack && (

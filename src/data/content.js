@@ -6,6 +6,7 @@ import ucLogo from "../assets/images/uc.png";
 import chopLogo from "../assets/images/CHOP.png";
 import dukeLogo from "../assets/images/duke.png";
 import akuLogo from "../assets/images/aku.png";
+import xaviours from "../assets/images/xaviours.png";
 import aimen from "../assets/images/team/Aiemen.jpeg";
 import rameez from "../assets/images/team/rameez bhai.jpeg";
 import tooba from "../assets/images/team/miss tooba.jpeg";
@@ -785,6 +786,10 @@ export const collaborators = [
     name: "Agha Khan University",
     logo: akuLogo,
   },
+  {
+    name: "Xaviours Solutions",
+    logo: xaviours,
+  },
 ];
 
 export const stories = [
@@ -825,8 +830,8 @@ export const stories = [
 
 /* ── Footer ── */
 export const footer = {
-  about:
-    "Research in generative artificial intelligence. Connecting intelligent models with real-world problems across academia and industry worldwide.",
+  about: `GenAI Lab bridges the gap between theoretical AI research and real-world deployment. 
+    We build autonomous Agentic systems, fine-tune custom LLMs, and partner with industry leaders to deliver impactful, human-centric solutions.`,
   social: [
     {
       label: "LinkedIn",
@@ -834,22 +839,22 @@ export const footer = {
       href: "https://www.linkedin.com/company/generative-ai-research-lab/?viewAsMember=true",
     },
   ],
-  navigation: [
-    { label: "Home", href: "#" },
-    { label: "About Us", href: "#about" },
-    { label: "Research", href: "#services" },
-    { label: "Projects", href: "#projects" },
-    { label: "Events", href: "#events" },
-    { label: "Team", href: "#team" },
-    { label: "Collaborators", href: "#collaborators" },
+  services: [
+    { text: "Agentic AI" },
+    { text: "GenAI in Agriculture" },
+    { text: "GenAI in Medical" },
+    { text: "GenAI in Education" },
+    { text: "GenAI in Bioinformatics" },
+    { text: "GenAI in Cyber Security" },
   ],
+
   areas: [
-    "Generative AI",
-    "Language Models",
-    "Computer Vision",
-    "NLP",
-    "RAG Systems",
-    "Intelligent Agents",
+    "Agentic AI",
+    "GenAI in Agriculture",
+    "GenAI in Medical",
+    "GenAI in Education",
+    "GenAI in Bioinformatics",
+    "GenAI in Cyber Security",
   ],
   contact: [
     {
@@ -858,16 +863,14 @@ export const footer = {
       href: "mailto:airl@kics.edu.pk",
     },
 
-    { icon: "fas fa-map-marker-alt", text: "Research Center" },
     { icon: "fas fa-clock", text: "Mon–Fri, 09:00AM–5:00PM" },
+    {
+      icon: "fas fa-map-marker-alt",
+      text: "Research Center 1st floor GenAi research Lab NCAI",
+    },
   ],
 };
 
-// src/data/content.js
-
-/// src/data/content.js
-
-// Every URL below is a highly reliable SVG link that will render perfectly on your site.
 export const techStack = [
   {
     items: [

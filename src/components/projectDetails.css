@@ -43,8 +43,8 @@
 
 .pj-chip {
   display: inline-block;
-  background: #f3e8ff; /* Soft purple pastel */
-  color: var(--c-brand); /* Vibrant purple */
+  background: var(--hover-bg); /* Soft tint matching main site */
+  color: var(--c-brand);
   padding: 6px 14px;
   border-radius: 100px;
   font-family: var(--font-sans);
@@ -52,7 +52,7 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  border: 1px solid #e9d5ff;
+  border: 1px solid var(--border);
 }
 
 /* Bold headings use DM Sans (real 700/800 weights); the serif is never bolded */
@@ -61,14 +61,28 @@
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
-  color: var(--c-ink);
+  color: var(--c-heading); /* MATCHES HOME PAGE HEADINGS */
   margin-bottom: 20px;
   letter-spacing: -0.035em;
 }
 
+/* ─────────────────────────────────────────────
+   THE GRADIENT MAGIC (Second half of title)
+   ───────────────────────────────────────────── */
+.pj-title span {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* Matches the glow on the homepage */
+  filter: drop-shadow(0px 2px 8px rgba(109, 59, 224, 0.25));
+}
+
 .pj-summary {
   font-size: var(--fs-body);
-  color: var(--c-text);
+  color: var(--c-text); /* MATCHES HOME PAGE PARAGRAPHS */
   line-height: 1.7;
   margin-bottom: 30px;
 }
@@ -131,14 +145,13 @@
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.03em;
-  color: var(--c-ink);
+  color: var(--c-heading); /* Deep Navy */
   margin-bottom: 14px;
 }
-
 .pj-content-full > p {
   font-size: var(--fs-body);
   line-height: 1.75;
-  color: var(--c-text);
+  color: var(--c-ink); /* MATCHES HOME PAGE PARAGRAPHS */
 }
 
 /* Keeps text readable, but lines up perfectly with the left edge */
@@ -229,7 +242,7 @@
 .pj-feature p {
   font-family: var(--font-sans);
   font-size: var(--fs-body-sm);
-  color: var(--c-text);
+  color: var(--c-ink); /* MATCHES HOME PAGE PARAGRAPHS */
   line-height: 1.6;
   margin: 0;
   flex-grow: 1;
@@ -241,10 +254,10 @@
 
 /* Card 1: Purple */
 .pj-feature:nth-child(1)::before {
-  background: #e4daff;
+  background: color-mix(in srgb, var(--c-brand) 20%, white);
 }
 .pj-feature:nth-child(1) .pj-feature-icon {
-  background: #e4daff;
+  background: color-mix(in srgb, var(--c-brand) 20%, white);
   color: var(--c-brand);
 }
 .pj-feature:nth-child(1):hover {
@@ -253,10 +266,10 @@
 
 /* Card 2: Deep Purple */
 .pj-feature:nth-child(2)::before {
-  background: #d2c3f7;
+  background: color-mix(in srgb, var(--c-deep) 25%, white);
 }
 .pj-feature:nth-child(2) .pj-feature-icon {
-  background: #d2c3f7;
+  background: color-mix(in srgb, var(--c-deep) 25%, white);
   color: var(--c-deep);
 }
 .pj-feature:nth-child(2):hover {
@@ -265,10 +278,10 @@
 
 /* Card 3: Blue */
 .pj-feature:nth-child(3)::before {
-  background: #bcd8fb;
+  background: color-mix(in srgb, var(--c-rose) 25%, white);
 }
 .pj-feature:nth-child(3) .pj-feature-icon {
-  background: #bcd8fb;
+  background: color-mix(in srgb, var(--c-rose) 25%, white);
   color: var(--c-rose);
 }
 .pj-feature:nth-child(3):hover {
@@ -277,10 +290,10 @@
 
 /* Card 4: Cyan */
 .pj-feature:nth-child(4)::before {
-  background: #b5eff6;
+  background: color-mix(in srgb, var(--c-cyan) 30%, white);
 }
 .pj-feature:nth-child(4) .pj-feature-icon {
-  background: #b5eff6;
+  background: color-mix(in srgb, var(--c-cyan) 30%, white);
   color: var(--c-cyan);
 }
 .pj-feature:nth-child(4):hover {
@@ -289,10 +302,10 @@
 
 /* Card 5: Purple (repeat) */
 .pj-feature:nth-child(5)::before {
-  background: #e4daff;
+  background: color-mix(in srgb, var(--c-brand) 20%, white);
 }
 .pj-feature:nth-child(5) .pj-feature-icon {
-  background: #e4daff;
+  background: color-mix(in srgb, var(--c-brand) 20%, white);
   color: var(--c-brand);
 }
 .pj-feature:nth-child(5):hover {
@@ -301,10 +314,10 @@
 
 /* Card 6: Deep Purple (repeat) */
 .pj-feature:nth-child(6)::before {
-  background: #d2c3f7;
+  background: color-mix(in srgb, var(--c-deep) 25%, white);
 }
 .pj-feature:nth-child(6) .pj-feature-icon {
-  background: #d2c3f7;
+  background: color-mix(in srgb, var(--c-deep) 25%, white);
   color: var(--c-deep);
 }
 .pj-feature:nth-child(6):hover {
@@ -313,10 +326,10 @@
 
 /* Card 7: Blue (repeat) */
 .pj-feature:nth-child(7)::before {
-  background: #bcd8fb;
+  background: color-mix(in srgb, var(--c-rose) 25%, white);
 }
 .pj-feature:nth-child(7) .pj-feature-icon {
-  background: #bcd8fb;
+  background: color-mix(in srgb, var(--c-rose) 25%, white);
   color: var(--c-rose);
 }
 .pj-feature:nth-child(7):hover {
@@ -325,10 +338,10 @@
 
 /* Card 8: Cyan (repeat) */
 .pj-feature:nth-child(8)::before {
-  background: #b5eff6;
+  background: color-mix(in srgb, var(--c-cyan) 30%, white);
 }
 .pj-feature:nth-child(8) .pj-feature-icon {
-  background: #b5eff6;
+  background: color-mix(in srgb, var(--c-cyan) 30%, white);
   color: var(--c-cyan);
 }
 .pj-feature:nth-child(8):hover {

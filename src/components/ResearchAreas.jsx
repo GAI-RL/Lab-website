@@ -3,6 +3,16 @@ import Img from "./Img";
 import { services, servicesImage } from "../data/content";
 // "Research Areas" section (id="services" - the nav's "Research" link).
 export default function ResearchAreas() {
+  // Map the services to the exact IDs used on the Research page
+  const serviceLinks = [
+    "agentic-ai",
+    "agriculture",
+    "medical",
+    "education",
+    "bioinformatics",
+    "cyber-security",
+  ];
+
   return (
     <section className="services" id="services">
       <div className="services-inner">
@@ -25,13 +35,19 @@ export default function ResearchAreas() {
         <div className="services-layout">
           <div className="svc-grid">
             {services.map((s, i) => (
-              <div className="svc-card" key={s.title}>
+              /* Changed from <div> to <Link> */
+              <Link
+                to={`/researchpage#${serviceLinks[i]}`}
+                className="svc-card"
+                key={s.title}
+                style={{ textDecoration: "none" }} // Removes the default underline
+              >
                 <span className="svc-num">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -20,7 +20,7 @@ export default function Team() {
           <div>
             <span className="section-tag">Our Team</span>
             <h2 className="section-h2">
-              Researchers, Developers & Students <span>working together</span>
+              Researchers, Developers & Students <span>Working Together</span>
             </h2>
             <p className="section-sub">
               Passionate people pushing the boundaries of generative AI
