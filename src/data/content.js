@@ -138,14 +138,12 @@ export const aboutChecklist = [
 
 /* ── Partners strip ── */
 export const partners = [
-  "OPENAI",
-  "DEEPMIND",
-  "MIT CSAIL",
-  "IEEE",
-  "HUGGING FACE",
-  "STANFORD AI",
-  "NVIDIA",
-  "GOOGLE AI",
+  "XAVIOURS SOLUTIONS",
+  "DUKE UNIVERSITY",
+  "CHILDREN'S HOSPITAL",
+
+  "AGHA KHAN UNIVERSITY",
+  "UNIVERSITY OF CALIFORNIA",
 ];
 
 /* ── Research areas (services section) ── */
@@ -870,6 +868,305 @@ export const footer = {
     },
   ],
 };
+
+export const researchServices = {
+  "Agentic AI": [
+    {
+      heading: "Custom LLM Development",
+      text: "Develop and customize language models for your needs.",
+    },
+    {
+      heading: "RAG-Based AI Solutions",
+      text: "Build AI systems that deliver answers from your data.",
+    },
+    {
+      heading: "AI Voice & Speech Generation",
+      text: "Create natural AI voices, speech, and audio experiences.",
+    },
+    {
+      heading: "AI Document Processing",
+      text: "Extract, summarize, and understand complex documents.",
+    },
+
+    {
+      heading: "AI Model Fine-Tuning",
+      text: "Customize foundation models for specialized tasks.",
+    },
+    {
+      heading: "Multimodal AI Development",
+      text: "Build AI that understands text, images, audio, and video.",
+    },
+  ],
+  "GenAI in Agriculture": [
+    {
+      heading: "AI-Powered Farming Assistants",
+      text: "Provide intelligent farming advice through AI assistants.",
+    },
+    {
+      heading: "Intelligent Crop Advisory Systems",
+      text: "Generate personalized recommendations for better crop management.",
+    },
+    {
+      heading: "AI Crop Disease Analysis",
+      text: "Analyze crop images and generate disease insights and guidance.",
+    },
+    {
+      heading: "Personalized Farm Planning",
+      text: "Create customized cultivation and irrigation plans using AI.",
+    },
+    {
+      heading: "Agricultural Report Generation",
+      text: "Generate detailed reports on crop health and farm performance.",
+    },
+    {
+      heading: "Multilingual Farming Chatbots",
+      text: "Deliver agricultural knowledge through multilingual AI conversations.",
+    },
+  ],
+  "GenAI in Medical": [
+    {
+      heading: "AI-Powered Medical Assistants",
+      text: "Build intelligent assistants for healthcare professionals and patients.",
+    },
+    {
+      heading: "Medical Report Generation",
+      text: "Generate structured clinical reports and patient documentation.",
+    },
+    {
+      heading: "Medical Image Analysis",
+      text: "Analyze medical images to support diagnostic workflows.",
+    },
+    {
+      heading: "Personalized Patient Care",
+      text: "Generate tailored care recommendations using patient information.",
+    },
+    {
+      heading: "Drug Discovery & Research",
+      text: "Accelerate pharmaceutical research with generative AI models.",
+    },
+    {
+      heading: "Clinical Documentation Automation",
+      text: "Automate medical notes, summaries, and healthcare records.",
+    },
+  ],
+  "GenAI in Education": [
+    {
+      heading: "AI-Powered Learning Assistants",
+      text: "Provide personalized learning support through intelligent AI tutors.",
+    },
+    {
+      heading: "AI Quiz & Assessment Generation",
+      text: "Generate quizzes, practice questions, and assessments automatically.",
+    },
+    {
+      heading: "AI-Powered Research Assistance",
+      text: "Summarize academic papers and extract meaningful research insights.",
+    },
+    {
+      heading: "Automated Lecture Summarization",
+      text: "Transform lengthy lectures into concise notes and key takeaways.",
+    },
+    {
+      heading: "AI Educational Chatbots",
+      text: "Answer student queries and provide instant academic assistance.",
+    },
+    {
+      heading: "Text-to-Speech & Voice Learning",
+      text: "Convert educational content into engaging AI-generated audio lessons.",
+    },
+  ],
+  "GenAI in Bioinformatics": [
+    {
+      heading: "AI-Powered Protein Design",
+      text: "Generate and optimize protein candidates for scientific research.",
+    },
+    {
+      heading: "DNA & Genomic Sequence Analysis",
+      text: "Analyze genetic sequences and uncover meaningful biological patterns.",
+    },
+    {
+      heading: "AI-Driven Drug Discovery",
+      text: "Accelerate molecular research through generative AI models.",
+    },
+    {
+      heading: "Protein Structure Prediction",
+      text: "Predict and explore complex three-dimensional protein structures.",
+    },
+    {
+      heading: "Biological Research Assistants",
+      text: "Generate scientific insights from biological data and research papers.",
+    },
+    {
+      heading: "Synthetic Biological Data Generation",
+      text: "Generate artificial biological datasets for computational research.",
+    },
+  ],
+
+  "GenAI in Cyber Security": [
+    {
+      heading: "AI-Powered Threat Intelligence",
+      text: "Analyze security data and generate actionable threat insights.",
+    },
+    {
+      heading: "Automated Incident Response",
+      text: "Generate incident reports and intelligent response recommendations.",
+    },
+    {
+      heading: "AI Vulnerability Assessment",
+      text: "Identify security weaknesses and generate remediation guidance.",
+    },
+    {
+      heading: "Phishing & Email Threat Detection",
+      text: "Analyze suspicious emails and identify potential phishing threats.",
+    },
+    {
+      heading: "AI-Powered Security Code Analysis",
+      text: "Detect code vulnerabilities and recommend secure coding practices.",
+    },
+    {
+      heading: "Intelligent Security Assistants",
+      text: "Build AI assistants for security monitoring and threat investigation.",
+    },
+  ],
+};
+export const researchAreas = [
+  {
+    id: "agentic-ai",
+    title: "Agentic AI",
+    intro: "From ideas to intelligent systems that solve real-world problems.",
+    feature: {
+      heading: "Autonomous Agents That Plan and Act",
+      text: "Multi-agent systems that decompose long tasks, use tools, verify their own output, and stay under human oversight.",
+      tags: ["Planning", "Tool use", "Multi-agent"],
+    },
+    cards: [
+      {
+        title: "Planning & Decomposition",
+        text: "Breaking long tasks into reliable sub-steps.",
+      },
+      {
+        title: "Tool Use & Memory",
+        text: "Calling APIs, storing state, and reusing context.",
+      },
+      {
+        title: "Safety & Oversight",
+        text: "Guardrails and human-in-the-loop controls.",
+      },
+    ],
+  },
+  {
+    id: "agriculture",
+    title: "Crop Intelligence for the Real World",
+    intro:
+      "Where computer vision meets the field - helping farmers see what the eye cannot.",
+    feature: {
+      heading: "AI-Powered Crop Disease Intelligence",
+      text: "A multimodal system that combines computer vision, retrieval-augmented generation, and domain knowledge to help identify crop diseases.",
+      tags: ["Computer vision", "RAG", "Multimodal"],
+    },
+    cards: [
+      {
+        title: "Yield Prediction",
+        text: "Forecasting harvests from satellite and weather data.",
+      },
+      {
+        title: "Precision Irrigation",
+        text: "Sensor-driven scheduling for water efficiency.",
+      },
+      {
+        title: "Pest Detection",
+        text: "Edge models that flag outbreaks early.",
+      },
+    ],
+  },
+  {
+    id: "medical",
+    title: "GenAI in Medical",
+    intro: "From ideas to intelligent systems that solve real-world problems.",
+    feature: {
+      heading: "Clinical Imaging With Vision-Language Models",
+      text: "Deep learning pipelines that read scans and draft structured reports, giving radiologists a head start.",
+      tags: ["Imaging", "Vision-language", "Clinical"],
+    },
+    cards: [
+      {
+        title: "Radiology Reports",
+        text: "Structured draft reports from imaging.",
+      },
+      {
+        title: "Retinopathy Screening",
+        text: "Early detection from fundus images.",
+      },
+      {
+        title: "Clinical Decision Support",
+        text: "Grounding predictions in guidelines.",
+      },
+    ],
+  },
+  {
+    id: "education",
+    title: "GenAI in Education",
+    intro: "From ideas to intelligent systems that solve real-world problems.",
+    feature: {
+      heading: "Adaptive Tutoring With LLMs",
+      text: "Personalised explanations, practice questions, and hints that adapt to each learner's level and pace.",
+      tags: ["LLMs", "Personalisation", "EdTech"],
+    },
+    cards: [
+      {
+        title: "Adaptive Explanations",
+        text: "Rewriting content for each learner.",
+      },
+      {
+        title: "Question Generation",
+        text: "Auto-generating practice material.",
+      },
+      {
+        title: "Progress Tracking",
+        text: "Measuring understanding over time.",
+      },
+    ],
+  },
+  {
+    id: "bioinformatics",
+    title: "GenAI in Bioinformatics",
+    intro: "From ideas to intelligent systems that solve real-world problems.",
+    feature: {
+      heading: "Protein Structure and Function Prediction",
+      text: "Transformer-based models that predict folding, function, and interactions from raw sequence data.",
+      tags: ["Genomics", "Transformers", "Structure"],
+    },
+    cards: [
+      {
+        title: "Variant Classification",
+        text: "Identifying pathogenic mutations.",
+      },
+      { title: "Protein Folding", text: "Sequence-to-structure prediction." },
+      {
+        title: "Single-Cell Analysis",
+        text: "Clustering and annotation at scale.",
+      },
+    ],
+  },
+  {
+    id: "cyber-security",
+    title: "GenAI in Cyber Security",
+    intro: "From ideas to intelligent systems that solve real-world problems.",
+    feature: {
+      heading: "Anomaly Detection and Automated Defence",
+      text: "Unsupervised models that flag zero-day threats and NLP pipelines that detect phishing in real time.",
+      tags: ["Anomaly detection", "NLP", "Defence"],
+    },
+    cards: [
+      { title: "Network Anomalies", text: "Zero-day detection in traffic." },
+      { title: "Phishing Detection", text: "Real-time email classification." },
+      {
+        title: "Threat Intelligence",
+        text: "Summarising and correlating reports.",
+      },
+    ],
+  },
+];
 
 export const techStack = [
   {

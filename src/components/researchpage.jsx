@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import "../research.css";
 import HeroScene from "./HeroScene";
 import logo from "../assets/images/logo.png";
+import { researchAreas, researchServices } from "../data/content";
 
 /* ─────────────────────────────────────────────
    ResearchCanvas — 6 animations, one per area.
@@ -34,7 +35,6 @@ function ResearchCanvas({ variant }) {
     const ROSE = "#1e6bff";
     const DEEP = "#3b2bb8";
     const CYAN = "#00c5df";
-    const INK = "#1e1b3a";
 
     const brand = (a) => `rgba(91, 61, 240, ${a})`;
     const rose = (a) => `rgba(30, 107, 255, ${a})`;
@@ -44,7 +44,6 @@ function ResearchCanvas({ variant }) {
     function drawAgentic(t) {
       ctx.clearRect(0, 0, W, H);
       const cy = H / 2;
-
       const pad = W * 0.08;
       const usable = W - pad * 2;
       const steps = [
@@ -56,7 +55,6 @@ function ResearchCanvas({ variant }) {
       ];
       const spacing = usable / (steps.length - 1);
       const positions = steps.map((_, i) => [pad + i * spacing, cy]);
-
       const THEME_COLORS = [
         {
           main: BRAND,
@@ -77,14 +75,12 @@ function ResearchCanvas({ variant }) {
           icon: "#ffffff",
         },
       ];
-
       ctx.strokeStyle = deep(0.15);
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(positions[0][0], cy);
       ctx.lineTo(positions[positions.length - 1][0], cy);
       ctx.stroke();
-
       ctx.setLineDash([4, 8]);
       ctx.lineDashOffset = -t * 20;
       ctx.strokeStyle = deep(0.3);
@@ -93,15 +89,12 @@ function ResearchCanvas({ variant }) {
       ctx.lineTo(positions[positions.length - 1][0], cy);
       ctx.stroke();
       ctx.setLineDash([]);
-
       const seg = (t * 0.6) % (positions.length - 1);
       const i0 = Math.floor(seg);
       const f = seg - i0;
       const px =
         positions[i0][0] + (positions[i0 + 1][0] - positions[i0][0]) * f;
-
       const currentTheme = THEME_COLORS[i0 % 3];
-
       const gradient = ctx.createRadialGradient(px, cy, 0, px, cy, 20);
       gradient.addColorStop(0, currentTheme.glow(0.7));
       gradient.addColorStop(1, currentTheme.glow(0));
@@ -109,17 +102,14 @@ function ResearchCanvas({ variant }) {
       ctx.beginPath();
       ctx.arc(px, cy, 20, 0, Math.PI * 2);
       ctx.fill();
-
       ctx.fillStyle = currentTheme.main;
       ctx.beginPath();
       ctx.arc(px, cy, 3.5, 0, 6.283);
       ctx.fill();
-
       positions.forEach(([x, y], i) => {
         const near = Math.max(0, 1 - Math.abs(seg - i) * 0.8);
         const r = 22 + near * 4;
         const theme = THEME_COLORS[i % 3];
-
         if (near > 0.05) {
           const glowGradient = ctx.createRadialGradient(
             x,
@@ -136,7 +126,6 @@ function ResearchCanvas({ variant }) {
           ctx.arc(x, y, 28 + near * 18, 0, Math.PI * 2);
           ctx.fill();
         }
-
         ctx.beginPath();
         for (let k = 0; k < 6; k++) {
           const a = (k * Math.PI) / 3 - Math.PI / 6;
@@ -150,17 +139,14 @@ function ResearchCanvas({ variant }) {
         ctx.strokeStyle = theme.main;
         ctx.lineWidth = 1.6;
         ctx.stroke();
-
         ctx.font = "11px Inter, system-ui, sans-serif";
         ctx.fillStyle = theme.main;
         ctx.textAlign = "center";
         ctx.fillText(steps[i].label.toUpperCase(), x, y - 40);
-
         ctx.font = "14px Inter, system-ui, sans-serif";
         ctx.fillStyle = near > 0.3 ? theme.icon : theme.main;
         ctx.fillText(steps[i].icon, x, y + 5);
       });
-
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.fillStyle = deep(0.5);
       ctx.textAlign = "center";
@@ -180,17 +166,14 @@ function ResearchCanvas({ variant }) {
         1.08 *
         w *
         Math.pow(Math.max(0, Math.sin(Math.PI * (x / L + 0.5))), 0.85);
-
       const spots = [
         [-0.18, -0.1, 0.075, "Leaf blight 94%"],
         [0.12, 0.2, 0.06, "Rust 88%"],
         [0.3, -0.08, 0.05, "Leaf spot 91%"],
       ];
-
       ctx.save();
       ctx.translate(W / 2, H / 2);
       ctx.rotate(ang);
-
       ctx.beginPath();
       ctx.moveTo(-L / 2, 0);
       ctx.bezierCurveTo(-L / 4, -w * 1.4, L / 4, -w * 1.5, L / 2, 0);
@@ -201,14 +184,12 @@ function ResearchCanvas({ variant }) {
       g.addColorStop(1, "#5b7d3a");
       ctx.fillStyle = g;
       ctx.fill();
-
       ctx.strokeStyle = deep(0.6);
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(-L / 2, 0);
       ctx.lineTo(L / 2, 0);
       ctx.stroke();
-
       ctx.lineWidth = 1;
       ctx.strokeStyle = deep(0.4);
       for (let k = 1; k < 11; k++) {
@@ -221,7 +202,6 @@ function ResearchCanvas({ variant }) {
         ctx.lineTo(x + L * 0.07, y);
         ctx.stroke();
       }
-
       const dx = s * 1.5;
       const dy = s * 1.732;
       const lit = [];
@@ -254,7 +234,6 @@ function ResearchCanvas({ variant }) {
           ctx.stroke();
         }
       }
-
       ctx.strokeStyle = rose(0.55);
       for (let i = 0; i < lit.length; i++) {
         for (let j = i + 1; j < lit.length; j++) {
@@ -268,7 +247,6 @@ function ResearchCanvas({ variant }) {
           }
         }
       }
-
       if (sx > -L / 2 && sx < L / 2) {
         ctx.shadowColor = BRAND;
         ctx.shadowBlur = 16;
@@ -281,7 +259,6 @@ function ResearchCanvas({ variant }) {
         ctx.shadowBlur = 0;
       }
       ctx.restore();
-
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.textBaseline = "middle";
       for (const sp of spots) {
@@ -291,14 +268,12 @@ function ResearchCanvas({ variant }) {
         const X = W / 2 + x0 * Math.cos(ang) - y0 * Math.sin(ang);
         const Y = H / 2 + x0 * Math.sin(ang) + y0 * Math.cos(ang);
         const tw = ctx.measureText(sp[3]).width + 16;
-
         ctx.strokeStyle = BRAND;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(X, Y);
         ctx.lineTo(X + 30, Y - 40);
         ctx.stroke();
-
         ctx.fillStyle = deep(0.9);
         ctx.fillRect(X + 30, Y - 52, tw, 24);
         ctx.strokeStyle = BRAND;
@@ -317,9 +292,7 @@ function ResearchCanvas({ variant }) {
       const size = Math.min(W, H) * 0.62;
       const bx = cx - size / 2;
       const by = cy - size / 2;
-
       const labelColors = [BRAND, ROSE, CYAN];
-
       const bl = size * 0.14;
       ctx.strokeStyle = deep(0.4);
       ctx.lineWidth = 2;
@@ -335,7 +308,6 @@ function ResearchCanvas({ variant }) {
         ctx.lineTo(x, y + sy * bl);
         ctx.stroke();
       });
-
       ctx.strokeStyle = deep(0.1);
       ctx.lineWidth = 1;
       for (let i = 1; i < 6; i++) {
@@ -346,7 +318,6 @@ function ResearchCanvas({ variant }) {
         ctx.lineTo(bx + size, by + (size * i) / 6);
         ctx.stroke();
       }
-
       const blobs = [
         { x: 0.32, y: 0.38, rx: 0.16, ry: 0.12, a: 0.15 },
         { x: 0.62, y: 0.44, rx: 0.14, ry: 0.11, a: 0.12 },
@@ -368,24 +339,20 @@ function ResearchCanvas({ variant }) {
         );
         ctx.fill();
       });
-
       const scanProgress = (t * 0.22) % 1;
       const scanY = by + scanProgress * size;
-
       const grd = ctx.createLinearGradient(0, scanY - 24, 0, scanY + 24);
       grd.addColorStop(0, brand(0));
       grd.addColorStop(0.5, brand(0.3));
       grd.addColorStop(1, brand(0));
       ctx.fillStyle = grd;
       ctx.fillRect(bx, scanY - 24, size, 48);
-
       ctx.strokeStyle = BRAND;
       ctx.lineWidth = 1.6;
       ctx.beginPath();
       ctx.moveTo(bx, scanY);
       ctx.lineTo(bx + size, scanY);
       ctx.stroke();
-
       const findings = [
         { x: 0.32, y: 0.38, label: "Region A · 92%" },
         { x: 0.62, y: 0.44, label: "Region B · 78%" },
@@ -393,36 +360,30 @@ function ResearchCanvas({ variant }) {
       ];
       ctx.font = "11px Inter, system-ui, sans-serif";
       ctx.textBaseline = "middle";
-
       findings.forEach((f, i) => {
         const fx = bx + f.x * size;
         const fy = by + f.y * size;
         const pulse = 0.6 + 0.4 * Math.sin(t * 3 + f.x * 4);
         const currentColor = labelColors[i % 3];
-
         const glowGrd = ctx.createRadialGradient(fx, fy, 0, fx, fy, 20 * pulse);
         const r = parseInt(currentColor.slice(1, 3), 16);
         const g = parseInt(currentColor.slice(3, 5), 16);
         const b = parseInt(currentColor.slice(5, 7), 16);
-
         glowGrd.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.4 * pulse})`);
         glowGrd.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
         ctx.fillStyle = glowGrd;
         ctx.beginPath();
         ctx.arc(fx, fy, 20 * pulse, 0, 6.283);
         ctx.fill();
-
         ctx.strokeStyle = currentColor;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.arc(fx, fy, 10 + pulse * 3, 0, 6.283);
         ctx.stroke();
-
         ctx.fillStyle = currentColor;
         ctx.beginPath();
         ctx.arc(fx, fy, 2.5, 0, 6.283);
         ctx.fill();
-
         const tw = ctx.measureText(f.label).width + 14;
         const lx = fx + 24;
         const ly = fy - 18;
@@ -432,18 +393,14 @@ function ResearchCanvas({ variant }) {
         ctx.moveTo(fx + 10, fy - 6);
         ctx.lineTo(lx, ly + 12);
         ctx.stroke();
-
         ctx.fillStyle = `rgba(255, 255, 255, 0.9)`;
         ctx.fillRect(lx, ly, tw, 22);
-
         ctx.strokeStyle = currentColor;
         ctx.lineWidth = 1;
         ctx.strokeRect(lx, ly, tw, 22);
-
         ctx.fillStyle = currentColor;
         ctx.fillText(f.label, lx + 7, ly + 11);
       });
-
       ctx.font = "10px Inter, system-ui, sans-serif";
       ctx.fillStyle = deep(0.5);
       ctx.textAlign = "left";
@@ -453,7 +410,6 @@ function ResearchCanvas({ variant }) {
         bx + 12,
         by + 34,
       );
-
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.fillStyle = deep(0.6);
       ctx.textAlign = "center";
@@ -467,14 +423,11 @@ function ResearchCanvas({ variant }) {
       ctx.clearRect(0, 0, W, H);
       const cx = W / 2;
       const cy = H / 2;
-
       const colors = [BRAND, ROSE, DEEP];
-
       const boxW = Math.min(W * 0.7, 450);
       const boxH = 180;
       const bx = cx - boxW / 2;
       const by = cy - boxH / 2;
-
       ctx.beginPath();
       ctx.roundRect(bx, by, boxW, boxH, 12);
       ctx.fillStyle = "#ffffff";
@@ -482,7 +435,6 @@ function ResearchCanvas({ variant }) {
       ctx.strokeStyle = deep(0.15);
       ctx.lineWidth = 1.5;
       ctx.stroke();
-
       ctx.fillStyle = "#f87171";
       ctx.beginPath();
       ctx.arc(bx + 15, by + 15, 5, 0, 6.283);
@@ -495,18 +447,15 @@ function ResearchCanvas({ variant }) {
       ctx.beginPath();
       ctx.arc(bx + 45, by + 15, 5, 0, 6.283);
       ctx.fill();
-
       ctx.fillStyle = deep(0.4);
       ctx.font = "600 10px Inter, system-ui, sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("AI Tutor Session", cx, by + 18);
-
       ctx.beginPath();
       ctx.moveTo(bx, by + 30);
       ctx.lineTo(bx + boxW, by + 30);
       ctx.strokeStyle = deep(0.1);
       ctx.stroke();
-
       ctx.textAlign = "left";
       ctx.fillStyle = deep(0.5);
       ctx.font = "12px Inter, system-ui, sans-serif";
@@ -515,10 +464,8 @@ function ResearchCanvas({ variant }) {
         bx + 20,
         by + 55,
       );
-
       const textSpeed = 0.15;
       const time = t * textSpeed;
-
       const line1 = "Photosynthesis is how plants eat...";
       const len1 = Math.floor((time * 10) % (line1.length + 10));
       if (len1 > 0) {
@@ -526,7 +473,6 @@ function ResearchCanvas({ variant }) {
         ctx.font = "500 13px Inter, system-ui, sans-serif";
         ctx.fillText(line1.slice(0, len1), bx + 20, by + 85);
       }
-
       const line2 = "They use sunlight to turn CO2 into sugar.";
       const len2 = Math.floor((time * 8) % (line2.length + 15));
       if (len2 > 0) {
@@ -534,7 +480,6 @@ function ResearchCanvas({ variant }) {
         ctx.font = "500 13px Inter, system-ui, sans-serif";
         ctx.fillText(line2.slice(0, len2), bx + 20, by + 110);
       }
-
       const line3 = "Think of it like a solar-powered kitchen!";
       const len3 = Math.floor((time * 9) % (line3.length + 20));
       if (len3 > 0) {
@@ -542,14 +487,12 @@ function ResearchCanvas({ variant }) {
         ctx.font = "500 13px Inter, system-ui, sans-serif";
         ctx.fillText(line3.slice(0, len3), bx + 20, by + 135);
       }
-
       if (Math.sin(t * 8) > 0) {
         const lastLineLength = Math.max(len1, len2, len3);
         ctx.fillStyle = deep(0.8);
         const cursorX = bx + 20 + lastLineLength * 7;
         ctx.fillRect(cursorX, by + 123, 6, 14);
       }
-
       ctx.fillStyle = deep(0.5);
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.textAlign = "center";
@@ -568,7 +511,6 @@ function ResearchCanvas({ variant }) {
       const amp = Math.min(W, H) * 0.18;
       const height = H * 0.75;
       const N = 40;
-
       for (let i = 0; i < N; i++) {
         const f = i / (N - 1);
         const y = cy - height / 2 + f * height;
@@ -576,25 +518,21 @@ function ResearchCanvas({ variant }) {
         const x1 = cx + Math.sin(phase) * amp;
         const x2 = cx - Math.sin(phase) * amp;
         const depth = Math.cos(phase);
-
         ctx.strokeStyle = `rgba(91, 61, 240, ${0.2 + 0.5 * (1 - Math.abs(depth))})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y);
         ctx.lineTo(x2, y);
         ctx.stroke();
-
         ctx.fillStyle = BRAND;
         ctx.beginPath();
         ctx.arc(x1, y, 3 + depth * 1.5, 0, 6.283);
         ctx.fill();
-
         ctx.fillStyle = ROSE;
         ctx.beginPath();
         ctx.arc(x2, y, 3 - depth * 1.5, 0, 6.283);
         ctx.fill();
       }
-
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.fillStyle = deep(0.7);
       ctx.textAlign = "center";
@@ -608,7 +546,6 @@ function ResearchCanvas({ variant }) {
       const cx = W / 2;
       const cy = H / 2;
       const R = Math.min(W, H) * 0.38;
-
       const colors = [BRAND, ROSE, CYAN];
       const getRGB = (hex) => {
         const r = parseInt(hex.slice(1, 3), 16);
@@ -616,22 +553,18 @@ function ResearchCanvas({ variant }) {
         const b = parseInt(hex.slice(5, 7), 16);
         return `${r}, ${g}, ${b}`;
       };
-
       for (let k = 1; k <= 3; k++) {
         const r = (R * k) / 3;
         const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 - k * 0.6);
         const color = colors[k % 3];
-
         ctx.strokeStyle = `rgba(${getRGB(color)}, ${0.15 + pulse * 0.2})`;
         ctx.lineWidth = 1.4;
         ctx.beginPath();
         ctx.arc(cx, cy, r, 0, 6.283);
         ctx.stroke();
       }
-
       const coreColor = colors[0];
       const coreRGB = getRGB(coreColor);
-
       const coreGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 32);
       coreGlow.addColorStop(0, `rgba(${coreRGB}, 0.6)`);
       coreGlow.addColorStop(1, `rgba(${coreRGB}, 0)`);
@@ -639,7 +572,6 @@ function ResearchCanvas({ variant }) {
       ctx.beginPath();
       ctx.arc(cx, cy, 32, 0, 6.283);
       ctx.fill();
-
       ctx.fillStyle = coreColor;
       ctx.beginPath();
       for (let i = 0; i < 6; i++) {
@@ -653,7 +585,6 @@ function ResearchCanvas({ variant }) {
       ctx.strokeStyle = `rgba(${coreRGB}, 0.8)`;
       ctx.lineWidth = 2;
       ctx.stroke();
-
       ctx.strokeStyle = deep(0.15);
       ctx.lineWidth = 1;
       for (let k = 0; k < 6; k++) {
@@ -663,29 +594,24 @@ function ResearchCanvas({ variant }) {
         ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R);
         ctx.stroke();
       }
-
       const threats = [
         { angle: 0.3, speed: 0.35, phase: 0.0 },
         { angle: 2.1, speed: 0.28, phase: 0.4 },
         { angle: 4.5, speed: 0.4, phase: 0.7 },
         { angle: 5.6, speed: 0.32, phase: 0.2 },
       ];
-
       threats.forEach((th, i) => {
         const cycle = (t * th.speed + th.phase) % 1;
         const dist = R * (1 - cycle);
         const x = cx + Math.cos(th.angle) * dist;
         const y = cy + Math.sin(th.angle) * dist;
-
         const threatColor = colors[(i + 1) % 3];
         const threatRGB = getRGB(threatColor);
-
         if (cycle < 0.78) {
           ctx.fillStyle = `rgba(${threatRGB}, ${0.4 + cycle * 0.5})`;
           ctx.beginPath();
           ctx.arc(x, y, 3 + cycle * 2, 0, 6.283);
           ctx.fill();
-
           ctx.strokeStyle = `rgba(${threatRGB}, ${0.25 * (1 - cycle)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
@@ -697,7 +623,6 @@ function ResearchCanvas({ variant }) {
           const rx = cx + Math.cos(th.angle) * R;
           const ry = cy + Math.sin(th.angle) * R;
           const flash = 1 - bf;
-
           const impactGlow = ctx.createRadialGradient(
             rx,
             ry,
@@ -712,7 +637,6 @@ function ResearchCanvas({ variant }) {
           ctx.beginPath();
           ctx.arc(rx, ry, 24 * flash + 8, 0, 6.283);
           ctx.fill();
-
           ctx.strokeStyle = `rgba(${threatRGB}, ${flash})`;
           ctx.lineWidth = 2;
           ctx.beginPath();
@@ -720,14 +644,11 @@ function ResearchCanvas({ variant }) {
           ctx.stroke();
         }
       });
-
       const sa = t * 0.6;
       const sx = cx + Math.cos(sa) * R;
       const sy = cy + Math.sin(sa) * R;
-
       const scanColor = colors[2];
       const scanRGB = getRGB(scanColor);
-
       const scanGlow = ctx.createRadialGradient(sx, sy, 0, sx, sy, 12);
       scanGlow.addColorStop(0, `rgba(${scanRGB}, 0.6)`);
       scanGlow.addColorStop(1, `rgba(${scanRGB}, 0)`);
@@ -735,12 +656,10 @@ function ResearchCanvas({ variant }) {
       ctx.beginPath();
       ctx.arc(sx, sy, 12, 0, 6.283);
       ctx.fill();
-
       ctx.fillStyle = scanColor;
       ctx.beginPath();
       ctx.arc(sx, sy, 2.5, 0, 6.283);
       ctx.fill();
-
       ctx.font = "12px Inter, system-ui, sans-serif";
       ctx.fillStyle = deep(0.6);
       ctx.textAlign = "center";
@@ -785,160 +704,15 @@ function ResearchCanvas({ variant }) {
 function GradientTitle({ text }) {
   const words = text.split(" ");
   if (words.length <= 1) return <span>{text}</span>;
-
-  // Split the array in half
   const mid = Math.ceil(words.length / 2);
   const firstHalf = words.slice(0, mid).join(" ");
   const secondHalf = words.slice(mid).join(" ");
-
   return (
     <>
       {firstHalf} <span>{secondHalf}</span>
     </>
   );
 }
-
-/* ─────────────────────────────────────────────
-   The six research areas + their content
-   ───────────────────────────────────────────── */
-const researchAreas = [
-  {
-    id: "agentic-ai",
-    title: "Agentic AI",
-    intro: "From ideas to intelligent systems that solve real-world problems.",
-    feature: {
-      heading: "Autonomous Agents That Plan and Act",
-      text: "Multi-agent systems that decompose long tasks, use tools, verify their own output, and stay under human oversight.",
-      tags: ["Planning", "Tool use", "Multi-agent"],
-    },
-    cards: [
-      {
-        title: "Planning & Decomposition",
-        text: "Breaking long tasks into reliable sub-steps.",
-      },
-      {
-        title: "Tool Use & Memory",
-        text: "Calling APIs, storing state, and reusing context.",
-      },
-      {
-        title: "Safety & Oversight",
-        text: "Guardrails and human-in-the-loop controls.",
-      },
-    ],
-  },
-  {
-    id: "agriculture",
-    title: "Crop Intelligence for the Real World",
-    intro:
-      "Where computer vision meets the field - helping farmers see what the eye cannot.",
-    feature: {
-      heading: "AI-Powered Crop Disease Intelligence",
-      text: "A multimodal system that combines computer vision, retrieval-augmented generation, and domain knowledge to help identify crop diseases.",
-      tags: ["Computer vision", "RAG", "Multimodal"],
-    },
-    cards: [
-      {
-        title: "Yield Prediction",
-        text: "Forecasting harvests from satellite and weather data.",
-      },
-      {
-        title: "Precision Irrigation",
-        text: "Sensor-driven scheduling for water efficiency.",
-      },
-      {
-        title: "Pest Detection",
-        text: "Edge models that flag outbreaks early.",
-      },
-    ],
-  },
-  {
-    id: "medical",
-    title: "GenAI in Medical",
-    intro: "From ideas to intelligent systems that solve real-world problems.",
-    feature: {
-      heading: "Clinical Imaging With Vision-Language Models",
-      text: "Deep learning pipelines that read scans and draft structured reports, giving radiologists a head start.",
-      tags: ["Imaging", "Vision-language", "Clinical"],
-    },
-    cards: [
-      {
-        title: "Radiology Reports",
-        text: "Structured draft reports from imaging.",
-      },
-      {
-        title: "Retinopathy Screening",
-        text: "Early detection from fundus images.",
-      },
-      {
-        title: "Clinical Decision Support",
-        text: "Grounding predictions in guidelines.",
-      },
-    ],
-  },
-  {
-    id: "education",
-    title: "GenAI in Education",
-    intro: "From ideas to intelligent systems that solve real-world problems.",
-    feature: {
-      heading: "Adaptive Tutoring With LLMs",
-      text: "Personalised explanations, practice questions, and hints that adapt to each learner's level and pace.",
-      tags: ["LLMs", "Personalisation", "EdTech"],
-    },
-    cards: [
-      {
-        title: "Adaptive Explanations",
-        text: "Rewriting content for each learner.",
-      },
-      {
-        title: "Question Generation",
-        text: "Auto-generating practice material.",
-      },
-      {
-        title: "Progress Tracking",
-        text: "Measuring understanding over time.",
-      },
-    ],
-  },
-  {
-    id: "bioinformatics",
-    title: "GenAI in Bioinformatics",
-    intro: "From ideas to intelligent systems that solve real-world problems.",
-    feature: {
-      heading: "Protein Structure and Function Prediction",
-      text: "Transformer-based models that predict folding, function, and interactions from raw sequence data.",
-      tags: ["Genomics", "Transformers", "Structure"],
-    },
-    cards: [
-      {
-        title: "Variant Classification",
-        text: "Identifying pathogenic mutations.",
-      },
-      { title: "Protein Folding", text: "Sequence-to-structure prediction." },
-      {
-        title: "Single-Cell Analysis",
-        text: "Clustering and annotation at scale.",
-      },
-    ],
-  },
-  {
-    id: "cyber-security",
-    title: "GenAI in Cyber Security",
-    intro: "From ideas to intelligent systems that solve real-world problems.",
-    feature: {
-      heading: "Anomaly Detection and Automated Defence",
-      text: "Unsupervised models that flag zero-day threats and NLP pipelines that detect phishing in real time.",
-      tags: ["Anomaly detection", "NLP", "Defence"],
-    },
-    cards: [
-      { title: "Network Anomalies", text: "Zero-day detection in traffic." },
-      { title: "Phishing Detection", text: "Real-time email classification." },
-      {
-        title: "Threat Intelligence",
-        text: "Summarising and correlating reports.",
-      },
-    ],
-  },
-];
 
 /* ─────────────────────────────────────────────
    The page
@@ -959,6 +733,15 @@ export default function Research() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [location]);
+
+  const serviceKeyMap = {
+    "agentic-ai": "Agentic AI",
+    agriculture: "GenAI in Agriculture",
+    medical: "GenAI in Medical",
+    education: "GenAI in Education",
+    bioinformatics: "GenAI in Bioinformatics",
+    "cyber-security": "GenAI in Cyber Security",
+  };
 
   return (
     <div className="research-page">
@@ -1004,53 +787,103 @@ export default function Research() {
           </div>
         </div>
 
-        {researchAreas.map((area) => (
-          <section key={area.id} className="area" id={area.id}>
-            {/* ── EDITORIAL LAYOUT ── */}
-            <div className="editorial-layout">
-              {/* LEFT SIDEBAR */}
-              <aside className="editorial-sidebar">
-                <h4 className="sidebar-title">Key Applications</h4>
+        {researchAreas.map((area) => {
+          const serviceKey = serviceKeyMap[area.id] || area.title;
+          const servicesForArea = researchServices[serviceKey] || [];
 
-                <div className="sidebar-cards">
-                  {area.cards.map((c) => (
-                    <div key={c.title} className="sidebar-card">
-                      <h3>{c.title}</h3>
-                      <p>{c.text}</p>
-                    </div>
-                  ))}
-                </div>
-              </aside>
-
-              {/* MAIN CONTENT */}
-              <main className="editorial-main">
-                {/* Header (Uses the new GradientTitle component) */}
-                <div className="ph">
-                  <h2 data-label="Research Area">
-                    <GradientTitle text={area.title} />
-                  </h2>
-                  <p>{area.intro}</p>
-                </div>
-
-                {/* Animation Canvas */}
-                <div className="feat-canvas-wrap">
-                  <ResearchCanvas variant={area.id} />
-                </div>
-
-                {/* Text Below */}
-                <div className="editorial-text">
-                  <h3>{area.feature.heading}</h3>
-                  <p>{area.feature.text}</p>
-                  <div className="tags">
-                    {area.feature.tags.map((t) => (
-                      <span key={t}>{t}</span>
+          return (
+            <section key={area.id} className="area" id={area.id}>
+              <div className="editorial-layout">
+                {/* LEFT SIDEBAR */}
+                <aside className="editorial-sidebar">
+                  <h4 className="sidebar-title">Key Applications</h4>
+                  <div className="sidebar-cards">
+                    {area.cards.map((c) => (
+                      <div key={c.title} className="sidebar-card">
+                        <h3>{c.title}</h3>
+                        <p>{c.text}</p>
+                      </div>
                     ))}
                   </div>
-                </div>
-              </main>
-            </div>
-          </section>
-        ))}
+                </aside>
+
+                {/* MAIN CONTENT */}
+                <main className="editorial-main">
+                  {/* Header */}
+                  <div className="ph">
+                    <h2 data-label="Research Area">
+                      <GradientTitle text={area.title} />
+                    </h2>
+                    <p>{area.intro}</p>
+                  </div>
+
+                  {/* ⬇️ THE NEW WRAPPER FOR CANVAS + TEXT ⬇️ */}
+                  <div className="editorial-content-row">
+                    <div className="editorial-visual-col">
+                      <div className="feat-canvas-wrap">
+                        <ResearchCanvas variant={area.id} />
+                      </div>
+                    </div>
+                    <div className="editorial-text-col">
+                      <div className="editorial-text">
+                        <h3>{area.feature.heading}</h3>
+                        <p>{area.feature.text}</p>
+                        <div className="tags">
+                          {area.feature.tags.map((t) => (
+                            <span key={t}>{t}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SERVICES SECTION BELOW */}
+                  {servicesForArea.length > 0 && (
+                    <div className="research-services-section">
+                      <div className="rs-header">
+                        <span className="rs-tag">What We Build</span>
+                        <h2 className="rs-title">
+                          Powerful AI Services for{" "}
+                          <span className="text-gradient">Your Vision</span>
+                        </h2>
+                        <p className="rs-subtitle">
+                          Comprehensive AI solutions to build, automate and
+                          scale your ideas.
+                        </p>
+                      </div>
+                      <div className="rs-grid">
+                        {servicesForArea.map((service, idx) => (
+                          <div className="rs-card" key={idx}>
+                            <div
+                              className={`rs-icon-wrapper svc-icon-${(idx % 6) + 1}`}
+                            >
+                              <i
+                                className={`fas fa-${
+                                  [
+                                    "robot",
+                                    "bolt",
+                                    "database",
+                                    "puzzle-piece",
+                                    "comments",
+                                    "cog",
+                                  ][idx % 6]
+                                }`}
+                              ></i>
+                            </div>
+                            <div className="rs-card-content">
+                              <h3>{service.heading}</h3>
+                              <p>{service.text}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </main>
+              </div>
+            </section>
+          );
+        })}
       </section>
       <Footer />
     </div>

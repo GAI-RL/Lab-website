@@ -262,7 +262,7 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-h1">
-            Building the next generation of Generative AI to{" "}
+            Building the Next Generation of Generative AI to{" "}
             <Typewriter
               className="grad"
               words={[
